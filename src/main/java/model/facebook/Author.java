@@ -1,9 +1,21 @@
-package dto.facebook.video;
+package model.facebook;
 
-public class Link {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Author {
+
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("alias")
+    @Expose
     private String alias;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("url")
+    @Expose
     private String url;
 
     public String getId() {

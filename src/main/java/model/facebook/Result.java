@@ -1,13 +1,32 @@
-package dto.facebook.video;
+package model.facebook;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Result {
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("duration")
+    @Expose
     private String duration;
+    @SerializedName("photo")
+    @Expose
     private String photo;
+    @SerializedName("author")
+    @Expose
     private Author author;
-    private int publish_time;
-    private int views_count;
+    @SerializedName("publish_time")
+    @Expose
+    private Integer publishTime;
+    @SerializedName("views_count")
+    @Expose
+    private Integer viewsCount;
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("descr")
+    @Expose
     private String descr;
 
     public String getId() {
@@ -42,20 +61,20 @@ public class Result {
         this.author = author;
     }
 
-    public int getPublish_time() {
-        return publish_time;
+    public Integer getPublishTime() {
+        return publishTime;
     }
 
-    public void setPublish_time(int publish_time) {
-        this.publish_time = publish_time;
+    public void setPublishTime(Integer publishTime) {
+        this.publishTime = publishTime;
     }
 
-    public int getViews_count() {
-        return views_count;
+    public Integer getViewsCount() {
+        return viewsCount;
     }
 
-    public void setViews_count(int views_count) {
-        this.views_count = views_count;
+    public void setViewsCount(Integer viewsCount) {
+        this.viewsCount = viewsCount;
     }
 
     public String getTitle() {
