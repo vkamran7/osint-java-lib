@@ -15,8 +15,11 @@ public class MaltegoController implements Callback<FacebookVideoV2Response> {
 
     private static final String BASE_URL = "https://osint.rest/api/";
     private static final String API_KEY = "197e25ace2da888ca5c4f23370777d8c87d0de1cf89657e22b";
+    CustomCallback callback;
+    FacebookVideoV2Response facebookVideoV2Response;
 
-    public void start() {
+    public void start(CustomCallback customCallback) {
+        callback = customCallback;
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(chain -> {
@@ -52,6 +55,10 @@ public class MaltegoController implements Callback<FacebookVideoV2Response> {
             FacebookVideoV2Response videoV2Response = response.body();
             assert videoV2Response != null;
             videoV2Response.getResult().forEach(System.out::println);
+            setResponse(videoV2Response);
+            if (callback != null) {
+                callback.onSuccess(videoV2Response);
+            }
         } else {
             System.out.println(response.errorBody());
         }
@@ -60,5 +67,16 @@ public class MaltegoController implements Callback<FacebookVideoV2Response> {
     @Override
     public void onFailure(Call<FacebookVideoV2Response> call, Throwable throwable) {
         throwable.printStackTrace();
+        if (callback != null) {
+            callback.onFailure(throwable);
+        }
+    }
+
+    public void setResponse(FacebookVideoV2Response response) {
+        this.facebookVideoV2Response = response;
+    }
+
+    public FacebookVideoV2Response getResponse() {
+        return facebookVideoV2Response;
     }
 }
