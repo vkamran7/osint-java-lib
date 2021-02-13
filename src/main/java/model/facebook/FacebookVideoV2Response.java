@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class FacebookVideoResponse {
+public class FacebookVideoV2Response {
     @SerializedName("result")
     @Expose
     private List<Result> result = null;

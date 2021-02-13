@@ -1,8 +1,8 @@
-import toy.Controller;
+import maltego.prototype.MaltegoController;
 
 public class OsintApp {
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        MaltegoController controller = new MaltegoController();
         controller.start();
     }
 }
