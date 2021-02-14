@@ -92,4 +92,18 @@ public class Result {
     public void setDescr(String descr) {
         this.descr = descr;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "id='" + id + '\'' +
+                ", duration='" + duration + '\'' +
+                ", photo='" + photo + '\'' +
+                ", author=" + author +
+                ", publishTime=" + publishTime +
+                ", viewsCount=" + viewsCount +
+                ", title='" + title + '\'' +
+                ", descr='" + descr + '\'' +
+                '}';
+    }
 }
