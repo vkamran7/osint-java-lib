@@ -1,6 +1,6 @@
 package maltego.rx;
 
-import model.facebook.FacebookVideoV2Response;
+import model.facebook.video.FacebookVideoV2Response;
 
 public class MaltegoApp {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-import model.facebook.FacebookVideoV2Response;
+import model.facebook.video.FacebookVideoV2Response;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
