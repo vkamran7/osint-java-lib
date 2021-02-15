@@ -7,6 +7,26 @@ public class FacebookVideoV2Request {
     private String date;
     private String timeout;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTimeout() {
+        return timeout;
+    }
+
     public static class Builder {
 
         private String query;

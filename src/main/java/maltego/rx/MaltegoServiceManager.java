@@ -2,6 +2,7 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.facebook.video.FacebookVideoV2Request;
 import model.facebook.video.FacebookVideoV2Response;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,5 +54,15 @@ public final class MaltegoServiceManager {
         }
 
         return response.get();
+    }
+
+    public FacebookVideoV2Response getV2Response(FacebookVideoV2Request request) {
+        AtomicReference<FacebookVideoV2Response> responseAtomicReference = new AtomicReference<>(new FacebookVideoV2Response());
+        try {
+            getFacebookV2(request.getQuery(), request.getLimit()).subscribe(responseAtomicReference::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return responseAtomicReference.get();
     }
 }
