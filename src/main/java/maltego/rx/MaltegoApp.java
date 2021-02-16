@@ -5,7 +5,7 @@ import model.facebook.video.FacebookVideoV2Response;
 
 public class MaltegoApp {
     public static void main(String[] args) {
-        MaltegoServiceManager manager = new MaltegoServiceManager();
+        MaltegoServiceManager manager = MaltegoServiceManager.getInstance();
         FacebookVideoV2Request request =
                 new FacebookVideoV2Request.Builder()
                 .query("ronaldo")

@@ -18,9 +18,27 @@ public final class MaltegoServiceManager {
     private static final String BASE_URL = "https://osint.rest/api/";
     private static final String API_KEY = "197e25ace2da888ca5c4f23370777d8c87d0de1cf89657e22b";
 
+    private static final Object lock = new Object();
+    private static volatile MaltegoServiceManager instance;
+
     private MaltegoAPI maltegoAPI;
 
-    MaltegoServiceManager() {
+
+    public static synchronized MaltegoServiceManager getInstance() {
+        MaltegoServiceManager  r = instance;
+        if (instance == null) {
+            synchronized (lock) {
+                r = instance;
+                if (r == null) {
+                    r = new MaltegoServiceManager();
+                    instance = r;
+                }
+            }
+        }
+        return r;
+    }
+
+    private MaltegoServiceManager() {
 
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         okHttpClient.addInterceptor(chain -> {
