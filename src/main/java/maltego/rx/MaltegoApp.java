@@ -10,6 +10,7 @@ public class MaltegoApp {
                 new FacebookVideoV2Request.Builder()
                 .query("ronaldo")
                 .limit(500)
+                .location("portugal")
                 .build();
 
         FacebookVideoV2Response response;

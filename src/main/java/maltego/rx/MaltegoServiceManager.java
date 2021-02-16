@@ -48,7 +48,7 @@ public final class MaltegoServiceManager {
     public FacebookVideoV2Response getV2Response(String query, int limit) {
         AtomicReference<FacebookVideoV2Response> response = new AtomicReference<>(new FacebookVideoV2Response());
         try {
-            getFacebookV2(query, limit).subscribe(response::set);
+            getFacebookV2(query, limit).toBlocking().subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -59,7 +59,7 @@ public final class MaltegoServiceManager {
     public FacebookVideoV2Response getV2Response(FacebookVideoV2Request request) {
         AtomicReference<FacebookVideoV2Response> responseAtomicReference = new AtomicReference<>(new FacebookVideoV2Response());
         try {
-            getFacebookV2(request.getQuery(), request.getLimit()).subscribe(responseAtomicReference::set);
+            getFacebookV2(request.getQuery(), request.getLimit()).toBlocking().subscribe(responseAtomicReference::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
