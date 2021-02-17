@@ -1,4 +1,4 @@
-package model.facebook.photo;
+package model.facebook.photo.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

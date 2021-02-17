@@ -1,6 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
-import model.facebook.video.FacebookVideoV2Request;
-import model.facebook.video.FacebookVideoV2Response;
+import model.facebook.video.request.FacebookVideoV2Request;
+import model.facebook.video.response.FacebookVideoV2Response;
 
 public class MaltegoApp {
     public static void main(String[] args) {

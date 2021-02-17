@@ -1,4 +1,4 @@
-package model.facebook.video;
+package model.facebook.video.request;
 
 public class FacebookVideoV2Request {
     private String query;

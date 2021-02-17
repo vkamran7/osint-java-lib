@@ -2,8 +2,8 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.facebook.video.FacebookVideoV2Request;
-import model.facebook.video.FacebookVideoV2Response;
+import model.facebook.video.request.FacebookVideoV2Request;
+import model.facebook.video.response.FacebookVideoV2Response;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;

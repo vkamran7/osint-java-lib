@@ -1,4 +1,4 @@
-package model.facebook.video;
+package model.facebook.video.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
