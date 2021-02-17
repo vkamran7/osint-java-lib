@@ -1,5 +1,4 @@
-package maltego.rx;
-
+import maltego.rx.MaltegoServiceManager;
 import model.facebook.video.FacebookVideoV2Request;
 import model.facebook.video.FacebookVideoV2Response;
 
@@ -9,7 +8,7 @@ public class MaltegoApp {
         FacebookVideoV2Request request =
                 new FacebookVideoV2Request.Builder()
                 .query("ronaldo")
-                .limit(500)
+                .limit(50)
                 .location("portugal")
                 .build();
 

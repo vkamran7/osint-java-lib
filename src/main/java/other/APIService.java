@@ -1,3 +1,5 @@
+package other;
+
 import model.facebook.video.FacebookVideoV2Response;
 import retrofit2.Call;
 import retrofit2.http.GET;
