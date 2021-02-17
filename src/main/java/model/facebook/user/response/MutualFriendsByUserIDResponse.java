@@ -3,7 +3,7 @@ package model.facebook.user.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MutualFriendsByUserID {
+public class MutualFriendsByUserIDResponse {
     @SerializedName("id")
     @Expose
     private String id;
