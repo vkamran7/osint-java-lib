@@ -106,7 +106,7 @@ public class PlacesByNameResponse {
         }
     }
 
-    public class Result {
+    public static class Result {
 
         @SerializedName("id")
         @Expose
