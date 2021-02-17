@@ -4,6 +4,7 @@ import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
 import model.facebook.user.response.UserByEmailResponse;
 import model.facebook.user.response.UserIDByProfileURLResponse;
+import model.facebook.user.response.UserLikesByUserIDResponse;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
 import model.facebook.video.response.FacebookVideoDetailsResponse;
 import model.facebook.video.response.FacebookVideoV2Response;
@@ -147,4 +148,10 @@ public interface MaltegoAPI {
 
     @GET("fbparser/url_to_id")
     Observable<UserIDByProfileURLResponse> getFacebookUserIDByProfileURL(@Query("url") String url);
+
+    @GET("facebook/user_likes/v2")
+    Observable<UserLikesByUserIDResponse> getFacebookUserLikesByUserID(@Query("id1") Integer id1,
+                                                                       @Query("id2") Integer di2,
+                                                                       @Query("limit") Integer limit,
+                                                                       @Query("timeout") Integer timeout);
 }
