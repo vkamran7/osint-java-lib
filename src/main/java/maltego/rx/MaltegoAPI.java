@@ -198,4 +198,14 @@ public interface MaltegoAPI {
                                                                          @Query("timeout") Integer timeout,
                                                                          @Query("delayed") Integer delayed,
                                                                          @Query("task_id") Integer taskId);
+
+    @GET("facebook/search_relations")
+    Observable<RelationsByUserIDResponse> getFacebookRelationsByUserID(@Query("query") String query,
+                                                                       @Query("limit") Integer limit,
+                                                                       @Query("timeout") Integer timeout);
+
+    @GET("facebook/user_relatives")
+    Observable<RelativesByUserIDResponse> getFBRelativesByUserID(@Query("query") String query,
+                                                                 @Query("limit") Integer limit,
+                                                                 @Query("timeout") Integer timeout);
 }
