@@ -15,6 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.Single;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -45,11 +46,11 @@ public final class MaltegoServiceManager {
 
     private MaltegoServiceManager() {
 
-//        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
-//        okHttpClient.addInterceptor(chain -> {
-//            Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
-//            return chain.proceed(request);
-//        });
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        okHttpClient.addInterceptor(chain -> {
+            Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
+            return chain.proceed(request);
+        });
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -59,17 +60,17 @@ public final class MaltegoServiceManager {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .client(okHttpClient.build())
-                .client(client)
+                .client(okHttpClient.build())
+//                .client(client)
                 .build();
         maltegoAPI = retrofit.create(MaltegoAPI.class);
     }
 
-    Observable<FacebookVideoV2Response> getFacebookV2(String query, int limit) {
+    public Observable<FacebookVideoV2Response> getFacebookV2(String query, int limit) {
         return maltegoAPI.getFacebookVideoV2(query, limit);
     }
 
-    Observable<FacebookVideoByGeoResponse> getFacebookByGeo(FacebookVideoByGeoRequest request) {
+    public Single<FacebookVideoByGeoResponse> getFacebookByGeo(FacebookVideoByGeoRequest request) {
         return maltegoAPI.getFacebookVideoGeo(
                 request.getLat(),
                 request.getLon(),
@@ -114,12 +115,11 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
-    private static OkHttpClient client = new OkHttpClient.Builder()
-//            .addInterceptor(new HttpLoggingInterceptor())
-            .addInterceptor(chain -> {
-                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
-                return chain.proceed(request);
-            })
-            .retryOnConnectionFailure(true)
-            .build();
+//    private static OkHttpClient client = new OkHttpClient.Builder()
+//            .addInterceptor(chain -> {
+//                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
+//                return chain.proceed(request);
+//            })
+//            .retryOnConnectionFailure(true)
+//            .build();
 }

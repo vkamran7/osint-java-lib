@@ -9,6 +9,7 @@ import model.facebook.video.response.FacebookVideoV2Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
+import rx.Single;
 
 public interface MaltegoAPI {
 
@@ -19,15 +20,15 @@ public interface MaltegoAPI {
                                                            @Query("limit") Integer limit);
 
     @GET("facebook/graph_query_by_geo")
-    Observable<FacebookVideoByGeoResponse> getFacebookVideoGeo(@Query("lat") Double lat,
-                                                               @Query("lon") Double lon,
-                                                               @Query("distance") Integer distance,
-                                                               @Query("limit") Integer limit,
-                                                               @Query("timeout") Integer timeout,
-                                                               @Query("delayed") Integer delayed,
-                                                               @Query("task_id") Integer taskId,
-                                                               @Query("task_timeout") Integer taskTimeout,
-                                                               @Query("type") String type);
+    Single<FacebookVideoByGeoResponse> getFacebookVideoGeo(@Query("lat") Double lat,
+                                                           @Query("lon") Double lon,
+                                                           @Query("distance") Integer distance,
+                                                           @Query("limit") Integer limit,
+                                                           @Query("timeout") Integer timeout,
+                                                           @Query("delayed") Integer delayed,
+                                                           @Query("task_id") Integer taskId,
+                                                           @Query("task_timeout") Integer taskTimeout,
+                                                           @Query("type") String type);
 
     @GET("fbparser/about_video")
     Observable<FacebookVideoDetailsResponse> getFacebookVideoDetails(@Query("id") Integer id);
