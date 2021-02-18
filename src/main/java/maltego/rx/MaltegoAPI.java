@@ -215,5 +215,5 @@ public interface MaltegoAPI {
 
     @GET("foursquare/facebook_to_foursquare")
     Observable<ConvertToFoursquareEntitiesResponse> getFBConvertToFoursquare(@Query("query") String query);
-
+//    facebook user ENDS
 }
