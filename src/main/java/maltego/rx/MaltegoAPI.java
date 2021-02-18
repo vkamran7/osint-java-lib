@@ -208,4 +208,9 @@ public interface MaltegoAPI {
     Observable<RelativesByUserIDResponse> getFBRelativesByUserID(@Query("query") String query,
                                                                  @Query("limit") Integer limit,
                                                                  @Query("timeout") Integer timeout);
+
+    @GET("facebook/get_last_activity")
+    Observable<LastActivityDateByUserIDResponse> getFBLastActivityDate(@Query("query") String query,
+                                                                       @Query("timeout") Integer timeout);
+
 }
