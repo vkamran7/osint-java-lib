@@ -191,4 +191,11 @@ public interface MaltegoAPI {
                                                                                  @Query("delayed") Integer delayed,
                                                                                  @Query("task_timeout") Integer taskTimeout,
                                                                                  @Query("task_id") Integer taskId);
+
+    @GET("facebook/learning_toghether/v2")
+    Observable<UserLearningTogetherV2Response> getFBUserLearningTogether(@Query("query") String query,
+                                                                         @Query("limit") Integer limit,
+                                                                         @Query("timeout") Integer timeout,
+                                                                         @Query("delayed") Integer delayed,
+                                                                         @Query("task_id") Integer taskId);
 }
