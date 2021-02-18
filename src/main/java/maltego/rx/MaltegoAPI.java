@@ -2,9 +2,7 @@ package maltego.rx;
 
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
-import model.facebook.user.response.UserByEmailResponse;
-import model.facebook.user.response.UserIDByProfileURLResponse;
-import model.facebook.user.response.UserLikesByUserIDResponse;
+import model.facebook.user.response.*;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
 import model.facebook.video.response.FacebookVideoDetailsResponse;
 import model.facebook.video.response.FacebookVideoV2Response;
@@ -154,4 +152,43 @@ public interface MaltegoAPI {
                                                                        @Query("id2") Integer di2,
                                                                        @Query("limit") Integer limit,
                                                                        @Query("timeout") Integer timeout);
+
+    @GET("facebook/get_name_by_id")
+    Observable<ProfileNameByUserIDResponse> getFacebookProfileNameByUserID(@Query("query") String query);
+
+    @GET("fbparser/alias_to_id")
+    Observable<UserIDByAliasResponse> getFacebookUserIDByAlias(@Query("query") String query);
+
+    @GET("facebook/user/v4")
+    Observable<UserProfileByUserIDResponse> getFacebookUserProfileByUserID(@Query("query") String query);
+
+    @GET("facebook/mutual_friends")
+    Observable<MutualFriendsByUserIDResponse> getFacebookMutualFriendsByUserID(@Query("id1") Integer id1,
+                                                                               @Query("id2") Integer id2,
+                                                                               @Query("limit") Integer limit);
+
+    @GET("facebook/friends/v3")
+    Observable<UserFriendsListByUserIDResponse> getFacebookUserFriendsListByUserIDV3(@Query("query") String query,
+                                                                                     @Query("limit") Integer limit);
+
+    @GET("user_followers/v2")
+    Observable<UserFollowersListByUserIDV2Response> getFacebookUserFollowersListV2(@Query("query") String query,
+                                                                                   @Query("limit") Integer limit,
+                                                                                   @Query("timeout") Integer timeout);
+
+    @GET("user_following/v3")
+    Observable<UserFollowingListByUserIDV3Response> getFacebookUserFollowingListV3(@Query("query") String query,
+                                                                                   @Query("limit") Integer limit,
+                                                                                   @Query("timeout") Integer timeout);
+
+    @GET("fbparser/user_info")
+    Observable<InformationFromUserPageByUserIDResponse> getFacebookInfoFromUserPage(@Query("id") Integer id);
+
+    @GET("facebook/co_workers/v2")
+    Observable<UserCoWorkersByUserIDV2Response> getFacebookUserCoWorksByUserIDV2(@Query("query") String query,
+                                                                                 @Query("limit") Integer limit,
+                                                                                 @Query("timeout") Integer timeout,
+                                                                                 @Query("delayed") Integer delayed,
+                                                                                 @Query("task_timeout") Integer taskTimeout,
+                                                                                 @Query("task_id") Integer taskId);
 }
