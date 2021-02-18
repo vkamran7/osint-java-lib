@@ -213,4 +213,7 @@ public interface MaltegoAPI {
     Observable<LastActivityDateByUserIDResponse> getFBLastActivityDate(@Query("query") String query,
                                                                        @Query("timeout") Integer timeout);
 
+    @GET("foursquare/facebook_to_foursquare")
+    Observable<ConvertToFoursquareEntitiesResponse> getFBConvertToFoursquare(@Query("query") String query);
+
 }
