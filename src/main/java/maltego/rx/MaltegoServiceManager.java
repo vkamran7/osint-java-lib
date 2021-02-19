@@ -3,8 +3,10 @@ package maltego.rx;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
+import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
+import model.facebook.video.response.FacebookVideoDetailsResponse;
 import model.facebook.video.response.FacebookVideoV2Response;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -48,20 +50,19 @@ public final class MaltegoServiceManager {
     private MaltegoServiceManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
-        okHttpClient.addInterceptor(chain -> {
-            Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
-            return chain.proceed(request);
-        });
-        okHttpClient.addInterceptor(logging)
-        .connectTimeout(20, TimeUnit.SECONDS)
-        .writeTimeout(20, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS);
-
 
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
+
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        okHttpClient.addInterceptor(chain -> {
+            Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
+            return chain.proceed(request);
+        }).addInterceptor(logging)
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -91,15 +92,8 @@ public final class MaltegoServiceManager {
         );
     }
 
-    public FacebookVideoV2Response getV2Response(String query, int limit) {
-        AtomicReference<FacebookVideoV2Response> response = new AtomicReference<>(new FacebookVideoV2Response());
-        try {
-            getFacebookV2(query, limit).toBlocking().subscribe(response::set);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return response.get();
+    public Observable<FacebookVideoDetailsResponse> getFBVideoDetailsObs(FacebookVideoDetailsRequest request) {
+        return maltegoAPI.getFacebookVideoDetails(request.getId());
     }
 
     public FacebookVideoV2Response getV2Response(FacebookVideoV2Request request) {
@@ -116,6 +110,16 @@ public final class MaltegoServiceManager {
         AtomicReference<FacebookVideoByGeoResponse> response = new AtomicReference<>(new FacebookVideoByGeoResponse());
         try {
             getFacebookByGeo(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public FacebookVideoDetailsResponse getFBVideoDetails(FacebookVideoDetailsRequest request) {
+        AtomicReference<FacebookVideoDetailsResponse> response = new AtomicReference<>();
+        try {
+            getFBVideoDetailsObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
