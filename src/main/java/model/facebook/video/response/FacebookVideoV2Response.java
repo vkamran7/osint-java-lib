@@ -11,6 +11,10 @@ public class FacebookVideoV2Response {
     @Expose
     private List<Result> result = null;
 
+    public List<Result> getResult() {
+        return result;
+    }
+
     @Override
     public String toString() {
         return "FacebookVideoV2Response{" +
