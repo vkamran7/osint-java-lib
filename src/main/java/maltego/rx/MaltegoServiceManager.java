@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Single;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 public final class MaltegoServiceManager {
@@ -45,12 +46,18 @@ public final class MaltegoServiceManager {
     }
 
     private MaltegoServiceManager() {
-
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         okHttpClient.addInterceptor(chain -> {
             Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
             return chain.proceed(request);
         });
+        okHttpClient.addInterceptor(logging)
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS);
+
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -70,7 +77,7 @@ public final class MaltegoServiceManager {
         return maltegoAPI.getFacebookVideoV2(query, limit);
     }
 
-    public Single<FacebookVideoByGeoResponse> getFacebookByGeo(FacebookVideoByGeoRequest request) {
+    public Observable<FacebookVideoByGeoResponse> getFacebookByGeo(FacebookVideoByGeoRequest request) {
         return maltegoAPI.getFacebookVideoGeo(
                 request.getLat(),
                 request.getLon(),

@@ -1,14 +1,22 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
+import model.facebook.video.response.FacebookVideoByGeoResponse;
 import model.facebook.video.response.FacebookVideoV2Response;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class MaltegoApiTest {
+    private static MaltegoServiceManager manager;
+
+    @BeforeAll
+    static void before() {
+        manager = MaltegoServiceManager.getInstance();
+    }
 
     @Test
     void testFBVideoV2() {
-        MaltegoServiceManager manager = MaltegoServiceManager.getInstance();
         FacebookVideoV2Request request =
                 new FacebookVideoV2Request.Builder()
                         .query("ronaldo")
@@ -21,5 +29,21 @@ public class MaltegoApiTest {
         Assertions.assertEquals(50, response.getResult().size());
     }
 
+    @Test
+    void testFBVideoByGeo() {
+        FacebookVideoByGeoRequest request =
+                new FacebookVideoByGeoRequest.Builder()
+                        .lat(40.757847)
+                        .lon(-73.989105)
+                        .distance(1000)
+                        .limit(2)
+                        .timeout(1100)
+                        .delayed(0)
+                        .taskTimeout(354000)
+                        .type("videos")
+                        .build();
 
+        FacebookVideoByGeoResponse response = manager.getFbGeo(request);
+        Assertions.assertEquals(2, response.getResult().size());
+    }
 }

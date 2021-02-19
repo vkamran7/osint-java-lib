@@ -20,7 +20,7 @@ public interface MaltegoAPI {
                                                            @Query("limit") Integer limit);
 
     @GET("facebook/graph_query_by_geo")
-    Single<FacebookVideoByGeoResponse> getFacebookVideoGeo(@Query("lat") Double lat,
+    Observable<FacebookVideoByGeoResponse> getFacebookVideoGeo(@Query("lat") Double lat,
                                                            @Query("lon") Double lon,
                                                            @Query("distance") Integer distance,
                                                            @Query("limit") Integer limit,
