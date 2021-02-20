@@ -1,4 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.photo.request.UserAlbumsRequest;
+import model.facebook.photo.response.UserAlbumsResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -57,5 +59,15 @@ public class   MaltegoApiTest {
 
         FacebookVideoDetailsResponse response = manager.getFBVideoDetails(request);
         Assertions.assertNotNull(response);
+    }
+
+    @Test
+    void testFBAlbumsByUserID() {
+        UserAlbumsRequest request = new UserAlbumsRequest.Builder()
+                .withId("100005173955397")
+                .build();
+        UserAlbumsResponse response = manager.getFBUserAlbumsByUserID(request);
+        Assertions.assertNotNull(response);
+//        manager.getFBUserAlbumsByUserIDObs(request).subscribe(System.out::println);
     }
 }

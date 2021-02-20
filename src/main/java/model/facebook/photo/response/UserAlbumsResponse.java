@@ -3,71 +3,101 @@ package model.facebook.photo.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class UserAlbumsResponse {
-    @SerializedName("album")
+
+    @SerializedName("result")
     @Expose
-    private String album;
-    @SerializedName("album_id")
+    private List<Result> result = null;
+    @SerializedName("count")
     @Expose
-    private String albumId;
-    @SerializedName("album_name")
-    @Expose
-    private String albumName;
-    @SerializedName("album_photos_count")
-    @Expose
-    private Integer albumPhotosCount;
-    @SerializedName("album_posts_count")
-    @Expose
-    private Object albumPostsCount;
-    @SerializedName("album_photo")
-    @Expose
-    private String albumPhoto;
+    private Integer count;
 
-    public String getAlbum() {
-        return album;
+    public List<Result> getResult() {
+        return result;
     }
 
-    public void setAlbum(String album) {
-        this.album = album;
+    public void setResult(List<Result> result) {
+        this.result = result;
     }
 
-    public String getAlbumId() {
-        return albumId;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setAlbumId(String albumId) {
-        this.albumId = albumId;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
-    public String getAlbumName() {
-        return albumName;
-    }
+    public class Result {
 
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
-    }
+        @SerializedName("album")
+        @Expose
+        private String album;
+        @SerializedName("album_id")
+        @Expose
+        private String albumId;
+        @SerializedName("album_name")
+        @Expose
+        private String albumName;
+        @SerializedName("album_photos_count")
+        @Expose
+        private Integer albumPhotosCount;
+        @SerializedName("album_posts_count")
+        @Expose
+        private Object albumPostsCount;
+        @SerializedName("album_photo")
+        @Expose
+        private String albumPhoto;
 
-    public Integer getAlbumPhotosCount() {
-        return albumPhotosCount;
-    }
+        public String getAlbum() {
+            return album;
+        }
 
-    public void setAlbumPhotosCount(Integer albumPhotosCount) {
-        this.albumPhotosCount = albumPhotosCount;
-    }
+        public void setAlbum(String album) {
+            this.album = album;
+        }
 
-    public Object getAlbumPostsCount() {
-        return albumPostsCount;
-    }
+        public String getAlbumId() {
+            return albumId;
+        }
 
-    public void setAlbumPostsCount(Object albumPostsCount) {
-        this.albumPostsCount = albumPostsCount;
-    }
+        public void setAlbumId(String albumId) {
+            this.albumId = albumId;
+        }
 
-    public String getAlbumPhoto() {
-        return albumPhoto;
-    }
+        public String getAlbumName() {
+            return albumName;
+        }
 
-    public void setAlbumPhoto(String albumPhoto) {
-        this.albumPhoto = albumPhoto;
+        public void setAlbumName(String albumName) {
+            this.albumName = albumName;
+        }
+
+        public Integer getAlbumPhotosCount() {
+            return albumPhotosCount;
+        }
+
+        public void setAlbumPhotosCount(Integer albumPhotosCount) {
+            this.albumPhotosCount = albumPhotosCount;
+        }
+
+        public Object getAlbumPostsCount() {
+            return albumPostsCount;
+        }
+
+        public void setAlbumPostsCount(Object albumPostsCount) {
+            this.albumPostsCount = albumPostsCount;
+        }
+
+        public String getAlbumPhoto() {
+            return albumPhoto;
+        }
+
+        public void setAlbumPhoto(String albumPhoto) {
+            this.albumPhoto = albumPhoto;
+        }
+
     }
 }

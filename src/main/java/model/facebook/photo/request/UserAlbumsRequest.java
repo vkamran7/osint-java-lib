@@ -10,7 +10,7 @@ public class UserAlbumsRequest {
     public static final class Builder {
         private String id;
 
-        private Builder() {
+        public Builder() {
         }
 
         public static Builder anUserAlbumsRequest() {
