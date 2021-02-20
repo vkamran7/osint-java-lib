@@ -58,7 +58,7 @@ public class   MaltegoApiTest {
         request.setId(15);
 
         FacebookVideoDetailsResponse response = manager.getFBVideoDetails(request);
-        Assertions.assertNotNull(response);
+        Assertions.assertNotNull(response.);
     }
 
     @Test
@@ -68,6 +68,5 @@ public class   MaltegoApiTest {
                 .build();
         UserAlbumsResponse response = manager.getFBUserAlbumsByUserID(request);
         Assertions.assertNotNull(response);
-//        manager.getFBUserAlbumsByUserIDObs(request).subscribe(System.out::println);
     }
 }
