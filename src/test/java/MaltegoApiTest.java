@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
-public class MaltegoApiTest {
+public class   MaltegoApiTest {
     private static MaltegoServiceManager manager;
 
     @BeforeAll

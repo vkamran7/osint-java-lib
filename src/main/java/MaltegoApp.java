@@ -37,4 +37,4 @@ public class MaltegoApp {
         manager.getFacebookByGeo(request).subscribe(System.out::println);
 //        System.out.println(response);
     }
-}
+}        

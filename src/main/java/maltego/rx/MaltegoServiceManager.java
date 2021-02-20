@@ -2,6 +2,8 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.facebook.photo.request.UserAlbumsRequest;
+import model.facebook.photo.response.UserAlbumsResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -96,6 +98,10 @@ public final class MaltegoServiceManager {
         return maltegoAPI.getFacebookVideoDetails(request.getId());
     }
 
+    public Observable<UserAlbumsResponse> getFBUserAlbumsByUserIDObs(UserAlbumsRequest request) {
+        return maltegoAPI.getFaceBookUserAlbumsByUserID(request.getId());
+    }
+
     public FacebookVideoV2Response getV2Response(FacebookVideoV2Request request) {
         AtomicReference<FacebookVideoV2Response> responseAtomicReference = new AtomicReference<>(new FacebookVideoV2Response());
         try {
@@ -120,6 +126,16 @@ public final class MaltegoServiceManager {
         AtomicReference<FacebookVideoDetailsResponse> response = new AtomicReference<>();
         try {
             getFBVideoDetailsObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public UserAlbumsResponse getFBUserAlbumsByUserID(UserAlbumsRequest request) {
+        AtomicReference<UserAlbumsResponse> response = new AtomicReference<>();
+        try {
+            getFBUserAlbumsByUserIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

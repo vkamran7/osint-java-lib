@@ -37,7 +37,7 @@ public interface MaltegoAPI {
 
 //    facebook photo STARTS
     @GET("facebook/user_albums/v3")
-    Observable<UserAlbumsResponse> getFaceBookUserAlbumsByUserID(@Query("id") Integer id);
+    Observable<UserAlbumsResponse> getFaceBookUserAlbumsByUserID(@Query("id") String id);
 
     @GET("facebook/album_photos/v2")
     Observable<PhotosByAlbumResponse> getFacebookPhotosByAlbum(@Query("query") String query,
