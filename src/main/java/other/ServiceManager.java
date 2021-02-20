@@ -1,15 +1,20 @@
 package other;
 
+import maltego.rx.MaltegoAPI;
+import model.facebook.video.request.FacebookVideoByGeoRequest;
+import model.facebook.video.response.FacebookVideoByGeoResponse;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
 
 public final class ServiceManager {
 
     private static final String API_KEY = "197e25ace2da888ca5c4f23370777d8c87d0de1cf89657e22b";
+    private MaltegoAPI maltegoAPI;
 
     private static ServiceManager sServiceManager;
     public static ServiceManager getInstance() {
@@ -52,6 +57,8 @@ public final class ServiceManager {
                 }).build();
     }
 
-//    private static final String prefixURL = "https://osint.rest/api";
+    private static final String prefixURL = "https://osint.rest/api";
+
+
 
 }

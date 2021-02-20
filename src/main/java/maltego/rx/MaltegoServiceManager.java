@@ -142,6 +142,33 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+
+    public Object getResponse(Object request) {
+
+        if (request instanceof FacebookVideoByGeoRequest) {
+            FacebookVideoByGeoRequest req = (FacebookVideoByGeoRequest) request;
+            Observable<FacebookVideoByGeoResponse> resp = maltegoAPI.getFacebookVideoGeo(
+                    req.getLat(),
+                    req.getLon(),
+                    req.getDistance(),
+                    req.getLimit(),
+                    req.getTimeout(),
+                    req.getDelayed(),
+                    req.getTaskId(),
+                    req.getTaskTimeout(),
+                    req.getType()
+            );
+            AtomicReference<FacebookVideoByGeoResponse> response = new AtomicReference<>();
+            try {
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+            return resp;
+        }
+        return null;
+    }
+
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();

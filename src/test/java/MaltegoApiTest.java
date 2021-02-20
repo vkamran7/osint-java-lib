@@ -1,3 +1,4 @@
+import maltego.rx.MaltegoAPI;
 import maltego.rx.MaltegoServiceManager;
 import model.facebook.photo.request.UserAlbumsRequest;
 import model.facebook.photo.response.UserAlbumsResponse;
@@ -10,6 +11,7 @@ import model.facebook.video.response.FacebookVideoV2Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import other.ServiceManager;
 
 
 public class   MaltegoApiTest {
@@ -68,5 +70,22 @@ public class   MaltegoApiTest {
                 .build();
         UserAlbumsResponse response = manager.getFBUserAlbumsByUserID(request);
         Assertions.assertNotNull(response);
+    }
+
+    @Test
+    void test() {
+        FacebookVideoByGeoRequest request =
+                new FacebookVideoByGeoRequest.Builder()
+                        .lat(40.757847)
+                        .lon(-73.989105)
+                        .distance(1000)
+                        .limit(2)
+                        .timeout(1100)
+                        .delayed(0)
+                        .taskTimeout(354000)
+                        .type("videos")
+                        .build();
+
+        manager.getResponse(request);
     }
 }
