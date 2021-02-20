@@ -58,7 +58,7 @@ public class   MaltegoApiTest {
         request.setId(15);
 
         FacebookVideoDetailsResponse response = manager.getFBVideoDetails(request);
-        Assertions.assertNotNull(response.);
+        Assertions.assertNotNull(response);
     }
 
     @Test
