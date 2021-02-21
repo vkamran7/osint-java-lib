@@ -2,14 +2,8 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.facebook.photo.request.PhotoByGeoRequest;
-import model.facebook.photo.request.PhotoByPhraseRequest;
-import model.facebook.photo.request.PhotoDetailsRequest;
-import model.facebook.photo.request.UserAlbumsRequest;
-import model.facebook.photo.response.PhotoByGeoResponse;
-import model.facebook.photo.response.PhotoByPhraseResponse;
-import model.facebook.photo.response.PhotoDetailsResponse;
-import model.facebook.photo.response.UserAlbumsResponse;
+import model.facebook.photo.request.*;
+import model.facebook.photo.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -200,6 +194,23 @@ public final class MaltegoServiceManager {
         AtomicReference<PhotoDetailsResponse> response = new AtomicReference<>();
         try {
             getFBPhotoDetailsObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<PhotosByAlbumResponse> getFBPhotosByAlbumObs(PhotosByAlbumRequest request) {
+        return maltegoAPI.getFacebookPhotosByAlbum(
+                request.getQuery(),
+                request.getLimit()
+        );
+    }
+
+    public PhotosByAlbumResponse getFBPhotosByAlbums(PhotosByAlbumRequest request) {
+        AtomicReference<PhotosByAlbumResponse> response = new AtomicReference<>();
+        try {
+            getFBPhotosByAlbumObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
