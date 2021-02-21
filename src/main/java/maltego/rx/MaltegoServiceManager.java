@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Single;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -200,15 +201,15 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
-    public Observable<PhotosByAlbumResponse> getFBPhotosByAlbumObs(PhotosByAlbumRequest request) {
+    public Observable<List<PhotosByAlbumResponse>> getFBPhotosByAlbumObs(PhotosByAlbumRequest request) {
         return maltegoAPI.getFacebookPhotosByAlbum(
                 request.getQuery(),
                 request.getLimit()
         );
     }
 
-    public PhotosByAlbumResponse getFBPhotosByAlbums(PhotosByAlbumRequest request) {
-        AtomicReference<PhotosByAlbumResponse> response = new AtomicReference<>();
+    public List<PhotosByAlbumResponse> getFBPhotosByAlbums(PhotosByAlbumRequest request) {
+        AtomicReference<List<PhotosByAlbumResponse>> response = new AtomicReference<>();
         try {
             getFBPhotosByAlbumObs(request).subscribe(response::set);
         } catch (Exception ex) {

@@ -1,12 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
-import model.facebook.photo.request.PhotoByGeoRequest;
-import model.facebook.photo.request.PhotoByPhraseRequest;
-import model.facebook.photo.request.PhotoDetailsRequest;
-import model.facebook.photo.request.UserAlbumsRequest;
-import model.facebook.photo.response.PhotoByGeoResponse;
-import model.facebook.photo.response.PhotoByPhraseResponse;
-import model.facebook.photo.response.PhotoDetailsResponse;
-import model.facebook.photo.response.UserAlbumsResponse;
+import model.facebook.photo.request.*;
+import model.facebook.photo.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -16,6 +10,8 @@ import model.facebook.video.response.FacebookVideoV2Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 
 public class FacebookApiTest {
@@ -112,6 +108,16 @@ public class FacebookApiTest {
                 .build();
         PhotoDetailsResponse response = manager.getFBPhotoDetails(request);
         Assertions.assertNotNull(response.getId());
+    }
+
+    @Test
+    void testGetFBPhotosByAlbums() {
+        PhotosByAlbumRequest request = new PhotosByAlbumRequest.Builder()
+                .withQuery("a.10150833040005693")
+                .withLimit(3)
+                .build();
+        List<PhotosByAlbumResponse> response = manager.getFBPhotosByAlbums(request);
+        Assertions.assertEquals(3, response.size());
     }
 
 }

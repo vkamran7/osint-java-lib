@@ -10,6 +10,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
+import java.util.List;
+
 public interface MaltegoAPI {
 
 
@@ -39,8 +41,8 @@ public interface MaltegoAPI {
     Observable<UserAlbumsResponse> getFaceBookUserAlbumsByUserID(@Query("id") String id);
 
     @GET("facebook/album_photos/v2")
-    Observable<PhotosByAlbumResponse> getFacebookPhotosByAlbum(@Query("query") String query,
-                                                               @Query("limit") Integer limit);
+    Observable<List<PhotosByAlbumResponse>> getFacebookPhotosByAlbum(@Query("query") String query,
+                                              @Query("limit") Integer limit);
 
     @GET("facebook/search_photos/v2")
     Observable<PhotoByPhraseResponse> getPhotoByPhraseLocationDate(@Query("query") String query,
