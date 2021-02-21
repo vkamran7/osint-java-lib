@@ -3,6 +3,9 @@ package model.facebook.photo.request;
 public class PhotoDetailsRequest {
     private String id;
 
+    public String getId() {
+        return id;
+    }
 
     public static final class Builder {
         private String id;

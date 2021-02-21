@@ -61,7 +61,7 @@ public interface MaltegoAPI {
                                                          @Query("type") String type);
 
     @GET("fbparser/photo")
-    Observable<PhotoDetailsResponse> getFacebookPhotoDetails(@Query("id") Integer id);
+    Observable<PhotoDetailsResponse> getFacebookPhotoDetails(@Query("id") String id);
 //    facebook photo ENDS
 
 
