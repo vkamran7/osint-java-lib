@@ -30,7 +30,7 @@ public class UserAlbumsResponse {
         this.count = count;
     }
 
-    public class Result {
+    public static class Result {
 
         @SerializedName("album")
         @Expose
