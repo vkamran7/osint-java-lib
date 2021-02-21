@@ -7,6 +7,25 @@ public class PhotoByPhraseRequest {
     private String date;
     private Integer timeout;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
 
     public static final class Builder {
         private String query;

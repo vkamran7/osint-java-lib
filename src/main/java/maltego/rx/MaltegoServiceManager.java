@@ -3,8 +3,10 @@ package maltego.rx;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.facebook.photo.request.PhotoByGeoRequest;
+import model.facebook.photo.request.PhotoByPhraseRequest;
 import model.facebook.photo.request.UserAlbumsRequest;
 import model.facebook.photo.response.PhotoByGeoResponse;
+import model.facebook.photo.response.PhotoByPhraseResponse;
 import model.facebook.photo.response.UserAlbumsResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
@@ -162,6 +164,26 @@ public final class MaltegoServiceManager {
         AtomicReference<PhotoByGeoResponse> response = new AtomicReference<>();
         try {
             searchFBPhotosByGeoObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<PhotoByPhraseResponse> searchFBPhotoByPhraseObs(PhotoByPhraseRequest request) {
+        return maltegoAPI.getPhotoByPhraseLocationDate(
+                request.getQuery(),
+                request.getLimit(),
+                request.getLocation(),
+                request.getDate(),
+                request.getTimeout()
+        );
+    }
+
+    public PhotoByPhraseResponse searchFBPhotoByPhrase(PhotoByPhraseRequest request) {
+        AtomicReference<PhotoByPhraseResponse> response = new AtomicReference<>();
+        try {
+            searchFBPhotoByPhraseObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
