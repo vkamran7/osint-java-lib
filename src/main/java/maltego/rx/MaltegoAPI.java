@@ -9,7 +9,6 @@ import model.facebook.video.response.FacebookVideoV2Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
-import rx.Single;
 
 public interface MaltegoAPI {
 
@@ -111,7 +110,7 @@ public interface MaltegoAPI {
                                                                 @Query("limit") Integer limit);
 
     @GET("fbparser/page_posts")
-    Observable<PagePostsByIdResponse> getFacebookPagePostsByID(@Query("id") Integer id,
+    Observable<PagePostsByIDResponse> getFacebookPagePostsByID(@Query("id") Integer id,
                                                                @Query("limit") Integer limit,
                                                                @Query("timeout") Integer timeout);
 

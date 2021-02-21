@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PagePostsByIdResponse {
+public class PagePostsByIDResponse {
     @SerializedName("page_id")
     @Expose
     private String pageId;
