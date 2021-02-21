@@ -3,7 +3,7 @@ package model.facebook.photo.request;
 public class PhotoByGeoRequest {
     private Double lat;
     private Double lon;
-    private Long distance;
+    private Integer distance;
     private Integer limit;
     private Integer timeout;
     private Integer delayed;
@@ -19,7 +19,7 @@ public class PhotoByGeoRequest {
         return lon;
     }
 
-    public Long getDistance() {
+    public Integer getDistance() {
         return distance;
     }
 
@@ -50,7 +50,7 @@ public class PhotoByGeoRequest {
     public static final class Builder {
         private Double lat;
         private Double lon;
-        private Long distance;
+        private Integer distance;
         private Integer limit;
         private Integer timeout;
         private Integer delayed;
@@ -75,7 +75,7 @@ public class PhotoByGeoRequest {
             return this;
         }
 
-        public Builder withDistance(Long distance) {
+        public Builder withDistance(Integer distance) {
             this.distance = distance;
             return this;
         }

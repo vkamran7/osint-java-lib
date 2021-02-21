@@ -1,4 +1,5 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.photo.request.PhotoByGeoRequest;
 import model.facebook.photo.request.UserAlbumsRequest;
 import model.facebook.photo.response.UserAlbumsResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
-public class MaltegoApiTest {
+public class FacebookApiTest {
     private static MaltegoServiceManager manager;
 
     @BeforeAll
