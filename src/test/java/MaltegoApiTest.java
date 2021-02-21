@@ -72,20 +72,4 @@ public class   MaltegoApiTest {
         Assertions.assertNotNull(response);
     }
 
-    @Test
-    void test() {
-        FacebookVideoByGeoRequest request =
-                new FacebookVideoByGeoRequest.Builder()
-                        .lat(40.757847)
-                        .lon(-73.989105)
-                        .distance(1000)
-                        .limit(2)
-                        .timeout(1100)
-                        .delayed(0)
-                        .taskTimeout(354000)
-                        .type("videos")
-                        .build();
-
-        manager.getResponse(request);
-    }
 }
