@@ -1,6 +1,6 @@
 package model.facebook.photo.request;
 
-public class PhotoByGeoResponse {
+public class PhotoByGeoRequest {
     private Double lat;
     private Double lon;
     private Long distance;
@@ -110,8 +110,8 @@ public class PhotoByGeoResponse {
             return this;
         }
 
-        public PhotoByGeoResponse build() {
-            PhotoByGeoResponse photoByGeoResponse = new PhotoByGeoResponse();
+        public PhotoByGeoRequest build() {
+            PhotoByGeoRequest photoByGeoResponse = new PhotoByGeoRequest();
             photoByGeoResponse.taskTimeout = this.taskTimeout;
             photoByGeoResponse.lon = this.lon;
             photoByGeoResponse.timeout = this.timeout;
