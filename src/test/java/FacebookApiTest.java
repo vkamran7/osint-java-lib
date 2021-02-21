@@ -1,4 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.page.request.AlbumPhotosRequest;
+import model.facebook.page.response.AlbumPhotosResponse;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -118,6 +120,17 @@ public class FacebookApiTest {
                 .build();
         List<PhotosByAlbumResponse> response = manager.getFBPhotosByAlbums(request);
         Assertions.assertEquals(3, response.size());
+    }
+
+    @Test
+    void getFBPageAlbumPhotos() {
+        AlbumPhotosRequest request = new AlbumPhotosRequest.Builder()
+                .withQuery("441767407837")
+                .withLimit(3)
+                .withTimeout(110)
+                .build();
+        AlbumPhotosResponse response = manager.getFBPageAlbumPhotos(request);
+        Assertions.assertEquals(3, response.getCount());
     }
 
 }
