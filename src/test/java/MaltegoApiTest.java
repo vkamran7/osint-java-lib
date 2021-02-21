@@ -1,4 +1,3 @@
-import maltego.rx.MaltegoAPI;
 import maltego.rx.MaltegoServiceManager;
 import model.facebook.photo.request.UserAlbumsRequest;
 import model.facebook.photo.response.UserAlbumsResponse;
@@ -11,10 +10,9 @@ import model.facebook.video.response.FacebookVideoV2Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import other.ServiceManager;
 
 
-public class   MaltegoApiTest {
+public class MaltegoApiTest {
     private static MaltegoServiceManager manager;
 
     @BeforeAll
@@ -60,7 +58,7 @@ public class   MaltegoApiTest {
         request.setId(15);
 
         FacebookVideoDetailsResponse response = manager.getFBVideoDetails(request);
-        Assertions.assertNotNull(response);
+        Assertions.assertNotNull(response.getAuthor());
     }
 
     @Test
