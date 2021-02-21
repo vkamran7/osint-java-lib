@@ -69,7 +69,7 @@ public interface MaltegoAPI {
 
 //    facebook page STARTS
     @GET("facebook/page_albums")
-    Observable<AlbumsByPageResponse> getFacebookPageByPage(@Query("query") String query,
+    Observable<AlbumsByPageResponse> getFacebookPageAlbumsByPage(@Query("query") String query,
                                                            @Query("limit") Integer limit,
                                                            @Query("timeout") Integer timeout);
 
