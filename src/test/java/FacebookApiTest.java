@@ -1,7 +1,9 @@
 import maltego.rx.MaltegoServiceManager;
 import model.facebook.photo.request.PhotoByGeoRequest;
+import model.facebook.photo.request.PhotoByPhraseRequest;
 import model.facebook.photo.request.UserAlbumsRequest;
 import model.facebook.photo.response.PhotoByGeoResponse;
+import model.facebook.photo.response.PhotoByPhraseResponse;
 import model.facebook.photo.response.UserAlbumsResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
@@ -86,6 +88,19 @@ public class FacebookApiTest {
                 .build();
         PhotoByGeoResponse response = manager.searchFBPhotosByGeo(request);
         Assertions.assertEquals(2, response.getResult().size());
+    }
+
+    @Test
+    void testSearchFBPhotoByPhrase() {
+        PhotoByPhraseRequest request = new PhotoByPhraseRequest.Builder()
+                .withQuery("world")
+                .withLimit(12)
+                .withLocation("moscow")
+                .withDate("2017-04")
+                .withTimeout(110)
+                .build();
+        PhotoByPhraseResponse response = manager.searchFBPhotoByPhrase(request);
+        Assertions.assertEquals(12, response.getResult().size());
     }
 
 }
