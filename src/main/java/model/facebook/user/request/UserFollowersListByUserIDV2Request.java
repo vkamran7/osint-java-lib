@@ -1,4 +1,4 @@
-package model.facebook.user.response;
+package model.facebook.user.request;
 
 public class UserFollowersListByUserIDV2Request {
     private String query;
