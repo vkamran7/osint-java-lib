@@ -3,6 +3,9 @@ package model.facebook.page.request;
 public class PageDetailsByPageRequest {
     private String query; // Page ID
 
+    public String getQuery() {
+        return query;
+    }
 
     public static final class Builder {
         private String query; // Page ID
