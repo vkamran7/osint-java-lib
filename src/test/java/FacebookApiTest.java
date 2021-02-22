@@ -184,6 +184,7 @@ public class FacebookApiTest {
                 .withQuery("767952000001198")
                 .build();
         PageDetailsByPageResponse response = manager.getFbPageDetailsByPageID(request);
+        Assertions.assertNotNull(response);
     }
 
 }
