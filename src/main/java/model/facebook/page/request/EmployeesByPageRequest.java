@@ -22,7 +22,7 @@ public class EmployeesByPageRequest {
         private Integer limit;
         private Integer timeout;
 
-        private Builder() {
+        public Builder() {
         }
 
         public static Builder anEmployeesByPageRequest() {
