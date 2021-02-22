@@ -1,12 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
-import model.facebook.page.request.AlbumPhotosRequest;
-import model.facebook.page.request.AlbumsByPageRequest;
-import model.facebook.page.request.EmployeesByPageRequest;
-import model.facebook.page.request.EventsByPageRequest;
-import model.facebook.page.response.AlbumPhotosResponse;
-import model.facebook.page.response.AlbumsByPageResponse;
-import model.facebook.page.response.EmployeesByPageResponse;
-import model.facebook.page.response.EventsByPageResponse;
+import model.facebook.page.request.*;
+import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -171,6 +165,17 @@ public class FacebookApiTest {
                 .build();
         EventsByPageResponse response = manager.searchFBEventsByPageID(request);
         Assertions.assertEquals(3, response.getResult().size());
+    }
+
+    @Test
+    void testGetFBPagesLikedByThisPage() {
+        LikedByThisPageRequest request = new LikedByThisPageRequest.Builder()
+                .withQuery("98963290676")
+                .withLimit(5)
+                .withTimeout(100)
+                .build();
+        LikedByThisPageResponse response = manager.getFBPagesLikedByThisPage(request);
+        Assertions.assertEquals(5, response.getResult().size());
     }
 
 }
