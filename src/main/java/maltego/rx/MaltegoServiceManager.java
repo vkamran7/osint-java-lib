@@ -2,14 +2,8 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.facebook.page.request.AlbumPhotosRequest;
-import model.facebook.page.request.AlbumsByPageRequest;
-import model.facebook.page.request.EmployeesByPageRequest;
-import model.facebook.page.request.EventsByPageRequest;
-import model.facebook.page.response.AlbumPhotosResponse;
-import model.facebook.page.response.AlbumsByPageResponse;
-import model.facebook.page.response.EmployeesByPageResponse;
-import model.facebook.page.response.EventsByPageResponse;
+import model.facebook.page.request.*;
+import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -293,6 +287,24 @@ public final class MaltegoServiceManager {
         AtomicReference<EventsByPageResponse> response = new AtomicReference<>();
         try {
             searchFBEventsByPageIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<LikedByThisPageResponse> getFBPagesLikedByThisPageObs(LikedByThisPageRequest request) {
+        return maltegoAPI.getFacebookPagesLikedByThisPage(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public LikedByThisPageResponse getFBPagesLikedByThisPage(LikedByThisPageRequest request) {
+        AtomicReference<LikedByThisPageResponse> response = new AtomicReference<>();
+        try {
+            getFBPagesLikedByThisPageObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
