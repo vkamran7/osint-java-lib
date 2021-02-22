@@ -178,4 +178,12 @@ public class FacebookApiTest {
         Assertions.assertEquals(5, response.getResult().size());
     }
 
+    @Test
+    void testGetFbPageDetailsByPageID() {
+        PageDetailsByPageRequest request = new PageDetailsByPageRequest.Builder()
+                .withQuery("767952000001198")
+                .build();
+        PageDetailsByPageResponse response = manager.getFbPageDetailsByPageID(request);
+    }
+
 }
