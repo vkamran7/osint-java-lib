@@ -73,7 +73,7 @@ public interface MaltegoAPI {
                                                            @Query("limit") Integer limit,
                                                            @Query("timeout") Integer timeout);
 
-    @GET("facebook/page_album_photos")
+    @GET("facebook/page_album_photos/v2")
     Observable<AlbumPhotosResponse> getFacebookPageAlbumPhotos(@Query("query") String query,
                                                                @Query("limit") Integer limit,
                                                                @Query("timeout") Integer timeout);
