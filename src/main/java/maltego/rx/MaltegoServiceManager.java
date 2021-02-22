@@ -5,9 +5,11 @@ import com.google.gson.GsonBuilder;
 import model.facebook.page.request.AlbumPhotosRequest;
 import model.facebook.page.request.AlbumsByPageRequest;
 import model.facebook.page.request.EmployeesByPageRequest;
+import model.facebook.page.request.EventsByPageRequest;
 import model.facebook.page.response.AlbumPhotosResponse;
 import model.facebook.page.response.AlbumsByPageResponse;
 import model.facebook.page.response.EmployeesByPageResponse;
+import model.facebook.page.response.EventsByPageResponse;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -272,6 +274,25 @@ public final class MaltegoServiceManager {
         AtomicReference<EmployeesByPageResponse> response = new AtomicReference<>();
         try {
             getFBPageEmployeesByPageIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<EventsByPageResponse> searchFBEventsByPageIDObs(EventsByPageRequest request) {
+        return maltegoAPI.searchFacebookEventsByPage(
+                request.getQuery(),
+                request.getType(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public EventsByPageResponse searchFBEventsByPageID(EventsByPageRequest request) {
+        AtomicReference<EventsByPageResponse> response = new AtomicReference<>();
+        try {
+            searchFBEventsByPageIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
