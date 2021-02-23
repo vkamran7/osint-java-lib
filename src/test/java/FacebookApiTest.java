@@ -187,4 +187,15 @@ public class FacebookApiTest {
         Assertions.assertNotNull(response);
     }
 
+    @Test
+    void testGetFBPageByName() {
+        PagesByNameRequest request = new PagesByNameRequest.Builder()
+                .withQuery("CAR CARes")
+                .withLimit(3)
+                .withTimeout(110)
+                .build();
+        PagesByNameResponse response = manager.getFBPageByName(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
+
 }
