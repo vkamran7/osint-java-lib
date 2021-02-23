@@ -250,4 +250,15 @@ public class FacebookApiTest {
         RelatedPagesByPageResponse response = manager.getFBRelatedPagesByPageID(request);
         Assertions.assertEquals(3, response.getResult().size());
     }
+
+    @Test
+    void testGetFBPageResidentsByPageID() {
+        ResidentsByPageRequest request = new ResidentsByPageRequest.Builder()
+                .withQuery("104958162837")
+                .withLimit(2)
+                .withTimeout(100)
+                .build();
+        ResidentsByPageResponse response = manager.getFBPageResidentsByPageID(request);
+//        Assertions.assertEquals(2, response.getResult().size());
+    }
 }
