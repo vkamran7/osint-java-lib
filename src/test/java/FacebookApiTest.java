@@ -229,4 +229,15 @@ public class FacebookApiTest {
         PlacesByNameResponse response = manager.searchFacebookPlacesByName(request);
         Assertions.assertEquals(3, response.getResult().size());
     }
+
+    @Test
+    void testSearchFBPlacesInByPageID() {
+        PlacesInByPageRequest request = new PlacesInByPageRequest.Builder()
+                .withQuery("108424279189115")
+                .withLimit(3)
+                .withTimeout(100)
+                .build();
+        PlacesInByPageResponse response = manager.searchFBPlacesInByPageID(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
 }
