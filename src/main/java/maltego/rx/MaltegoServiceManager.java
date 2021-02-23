@@ -449,6 +449,25 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<EventsByNameResponse> getFacebookEventsByNameObs(EventsByNameRequest request) {
+        return maltegoAPI.getFacebookEventsByName(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public EventsByNameResponse getFacebookEventsByName(EventsByNameRequest request) {
+        AtomicReference<EventsByNameResponse> response = new AtomicReference<>();
+        try {
+            getFacebookEventsByNameObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();

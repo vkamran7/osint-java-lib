@@ -103,7 +103,7 @@ public interface MaltegoAPI {
                                                            @Query("timeout") Integer timeout);
 
     @GET("facebook/search_events/v2")
-    Observable<EventsByPageResponse> getFacebookEventsByName(@Query("query") String query,
+    Observable<EventsByNameResponse> getFacebookEventsByName(@Query("query") String query,
                                                              @Query("limit") Integer limit,
                                                              @Query("timeout") Integer timeout);
 
