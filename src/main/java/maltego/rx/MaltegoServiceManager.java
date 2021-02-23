@@ -343,6 +343,23 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<PhotosByPageResponse> getFBPagePhotosByPageIDObs(PhotosByPageRequest request) {
+        return maltegoAPI.getFacebookPagePhotosByPageID(
+                request.getQuery(),
+                request.getLimit()
+        );
+    }
+
+    public PhotosByPageResponse getFBPagePhotosByPageID(PhotosByPageRequest request) {
+        AtomicReference<PhotosByPageResponse> response = new AtomicReference<>();
+        try {
+            getFBPagePhotosByPageIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
