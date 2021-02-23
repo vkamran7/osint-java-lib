@@ -240,4 +240,14 @@ public class FacebookApiTest {
         PlacesInByPageResponse response = manager.searchFBPlacesInByPageID(request);
         Assertions.assertEquals(3, response.getResult().size());
     }
+
+    @Test
+    void testGetFBRelatedPagesByPageID() {
+        RelatedPagesByPageRequest request = new RelatedPagesByPageRequest.Builder()
+                .withQuery("767952000001198")
+                .withLimit(3)
+                .build();
+        RelatedPagesByPageResponse response = manager.getFBRelatedPagesByPageID(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
 }
