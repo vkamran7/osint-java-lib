@@ -208,4 +208,15 @@ public class FacebookApiTest {
         Assertions.assertEquals(100, response.getResult().size());
     }
 
+    @Test
+    void testSearchFBPlacesByGeo() {
+        PlacesByGeoRequest request = new PlacesByGeoRequest.Builder()
+                .withLat(50.4127507)
+                .withLon(30.5512921)
+                .withDistance(1000)
+                .withLimit(12)
+                .build();
+        PlacesByGeoResponse response = manager.searchFBPlacesByGeo(request);
+        Assertions.assertEquals(12, response.getResult().size());
+    }
 }
