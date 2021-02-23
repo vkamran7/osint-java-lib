@@ -325,6 +325,23 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<PagesByNameResponse> getFBPageByNameObs(PagesByNameRequest request) {
+        return maltegoAPI.getFacebookPagesByName(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public PagesByNameResponse getFBPageByName(PagesByNameRequest request) {
+        AtomicReference<PagesByNameResponse> response = new AtomicReference<>();
+        try {
+            getFBPageByNameObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
