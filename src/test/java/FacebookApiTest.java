@@ -219,4 +219,14 @@ public class FacebookApiTest {
         PlacesByGeoResponse response = manager.searchFBPlacesByGeo(request);
         Assertions.assertEquals(12, response.getResult().size());
     }
+
+    @Test
+    void testSearchFacebookPlacesByName() {
+        PlacesByNameRequest request = new PlacesByNameRequest.Builder()
+                .withQuery("moscow")
+                .withLimit(3)
+                .build();
+        PlacesByNameResponse response = manager.searchFacebookPlacesByName(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
 }

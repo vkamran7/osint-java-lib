@@ -5,6 +5,17 @@ public class PlacesInByPageRequest {
     private Integer limit;
     private Integer timeout;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
 
     public static final class Builder {
         private String query; // Facebook Page ID
