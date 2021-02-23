@@ -112,7 +112,7 @@ public interface MaltegoAPI {
                                                                 @Query("limit") Integer limit);
 
     @GET("fbparser/page_posts")
-    Observable<PagePostsByIDResponse> getFacebookPagePostsByID(@Query("id") Integer id,
+    Observable<List<PagePostsByIDResponse>> getFacebookPagePostsByID(@Query("id") Long id,
                                                                @Query("limit") Integer limit,
                                                                @Query("timeout") Integer timeout);
 

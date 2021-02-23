@@ -272,4 +272,15 @@ public class FacebookApiTest {
         EventsByNameResponse response = manager.getFacebookEventsByName(request);
         Assertions.assertEquals(3, response.getResult().size());
     }
+
+    @Test
+    void testGetFacebookPagePostsByID() {
+        PagePostsByIDRequest request = new PagePostsByIDRequest.Builder()
+                .withId(212919592073724L)
+                .withLimit(5)
+                .withTimeout(90)
+                .build();
+        List<PagePostsByIDResponse> response = manager.getFacebookPagePostsByID(request);
+        Assertions.assertEquals(5, response.size());
+    }
 }

@@ -5,6 +5,17 @@ public class PagePostsByIDRequest {
     private Integer limit;
     private Integer timeout;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
 
     public static final class Builder {
         private Long id; // Facebook Page ID

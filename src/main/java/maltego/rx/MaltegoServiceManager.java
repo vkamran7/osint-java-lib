@@ -467,6 +467,24 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<List<PagePostsByIDResponse>> getFacebookPagePostsByIDObs(PagePostsByIDRequest request) {
+        return maltegoAPI.getFacebookPagePostsByID(
+                request.getId(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public List<PagePostsByIDResponse> getFacebookPagePostsByID(PagePostsByIDRequest request) {
+        AtomicReference<List<PagePostsByIDResponse>> response = new AtomicReference<>();
+        try {
+            getFacebookPagePostsByIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
