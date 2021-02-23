@@ -3,6 +3,8 @@ import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
+import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
+import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -282,5 +284,14 @@ public class FacebookApiTest {
                 .build();
         List<PagePostsByIDResponse> response = manager.getFacebookPagePostsByID(request);
         Assertions.assertEquals(5, response.size());
+    }
+
+    // Facebook User Starts
+    @Test
+    void testConvertToFoursquareEntities() {
+        ConvertToFoursquareEntitiesRequest request = new ConvertToFoursquareEntitiesRequest.Builder()
+                .withQuery("4")
+                .build();
+        ConvertToFoursquareEntitiesResponse response = manager.convertToFoursquareEntities(request);
     }
 }

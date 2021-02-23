@@ -3,6 +3,9 @@ package model.facebook.user.request;
 public class ConvertToFoursquareEntitiesRequest {
     private String query; // facebook user id
 
+    public String getQuery() {
+        return query;
+    }
 
     public static final class Builder {
         private String query; // facebook user id
