@@ -379,6 +379,23 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<PlacesByNameResponse> searchFacebookPlacesByNameObs(PlacesByNameRequest request) {
+        return maltegoAPI.searchFacebookPlacesByName(
+                request.getQuery(),
+                request.getLimit()
+        );
+    }
+
+    public PlacesByNameResponse searchFacebookPlacesByName(PlacesByNameRequest request) {
+        AtomicReference<PlacesByNameResponse> response = new AtomicReference<>();
+        try {
+            searchFacebookPlacesByNameObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
