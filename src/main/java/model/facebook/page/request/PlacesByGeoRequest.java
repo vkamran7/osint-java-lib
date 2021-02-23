@@ -6,6 +6,21 @@ public class PlacesByGeoRequest {
     private Integer distance;
     private Integer limit;
 
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
 
     public static final class Builder {
         private Double lat;

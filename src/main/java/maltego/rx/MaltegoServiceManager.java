@@ -360,6 +360,25 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<PlacesByGeoResponse> searchFBPlacesByGeoObs(PlacesByGeoRequest request) {
+        return maltegoAPI.searchFacebookPlacesByGeo(
+                request.getLat(),
+                request.getLon(),
+                request.getDistance(),
+                request.getLimit()
+        );
+    }
+
+    public PlacesByGeoResponse searchFBPlacesByGeo(PlacesByGeoRequest request) {
+        AtomicReference<PlacesByGeoResponse> response = new AtomicReference<>();
+        try {
+            searchFBPlacesByGeoObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
