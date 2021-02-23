@@ -198,4 +198,14 @@ public class FacebookApiTest {
         Assertions.assertEquals(3, response.getResult().size());
     }
 
+    @Test
+    void testGetFBPagePhotosByPageID() {
+        PhotosByPageRequest request = new PhotosByPageRequest.Builder()
+                .withQuery("8195378771")
+                .withLimit(100)
+                .build();
+        PhotosByPageResponse response = manager.getFBPagePhotosByPageID(request);
+        Assertions.assertEquals(100, response.getResult().size());
+    }
+
 }
