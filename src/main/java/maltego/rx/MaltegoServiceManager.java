@@ -414,6 +414,23 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<RelatedPagesByPageResponse> getFBRelatedPagesByPageIDObs(RelatedPagesByPageRequest request) {
+        return maltegoAPI.getFacebookRelatedPagesByPageID(
+                request.getQuery(),
+                request.getLimit()
+        );
+    }
+
+    public RelatedPagesByPageResponse getFBRelatedPagesByPageID(RelatedPagesByPageRequest request) {
+        AtomicReference<RelatedPagesByPageResponse> response = new AtomicReference<>();
+        try {
+            getFBRelatedPagesByPageIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
