@@ -184,7 +184,7 @@ public interface MaltegoAPI {
                                                                                    @Query("timeout") Integer timeout);
 
     @GET("fbparser/user_info")
-    Observable<InformationFromUserPageByUserIDResponse> getFacebookInfoFromUserPage(@Query("id") Integer id);
+    Observable<InformationFromUserPageByUserIDResponse> getFacebookInfoFromUserPage(@Query("id") Long id);
 
     @GET("facebook/co_workers/v2")
     Observable<UserCoWorkersByUserIDV2Response> getFacebookUserCoWorksByUserIDV2(@Query("query") String query,

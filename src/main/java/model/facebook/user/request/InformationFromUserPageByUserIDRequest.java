@@ -3,6 +3,9 @@ package model.facebook.user.request;
 public class InformationFromUserPageByUserIDRequest {
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
 
     public static final class Builder {
         private Long id;

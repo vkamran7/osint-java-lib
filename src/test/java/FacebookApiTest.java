@@ -4,7 +4,9 @@ import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
+import model.facebook.user.request.InformationFromUserPageByUserIDRequest;
 import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
+import model.facebook.user.response.InformationFromUserPageByUserIDResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -293,5 +295,14 @@ public class FacebookApiTest {
                 .withQuery("4")
                 .build();
         ConvertToFoursquareEntitiesResponse response = manager.convertToFoursquareEntities(request);
+    }
+
+    @Test
+    void testGetFBInfoFromUserPageByUserID() {
+        InformationFromUserPageByUserIDRequest request = new InformationFromUserPageByUserIDRequest.Builder()
+                .withId(4L)
+                .build();
+        InformationFromUserPageByUserIDResponse response = manager.getFBInfoFromUserPageByUserID(request);
+        Assertions.assertNotNull(response.getId());
     }
 }

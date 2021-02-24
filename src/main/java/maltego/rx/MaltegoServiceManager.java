@@ -7,7 +7,9 @@ import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
+import model.facebook.user.request.InformationFromUserPageByUserIDRequest;
 import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
+import model.facebook.user.response.InformationFromUserPageByUserIDResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -498,6 +500,20 @@ public final class MaltegoServiceManager {
         AtomicReference<ConvertToFoursquareEntitiesResponse> response = new AtomicReference<>();
         try {
             convertToFoursquareEntitiesObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<InformationFromUserPageByUserIDResponse> getFBInfoFromUserPageByUserIDObs(InformationFromUserPageByUserIDRequest request) {
+        return maltegoAPI.getFacebookInfoFromUserPage(request.getId());
+    }
+
+    public InformationFromUserPageByUserIDResponse getFBInfoFromUserPageByUserID(InformationFromUserPageByUserIDRequest request) {
+        AtomicReference<InformationFromUserPageByUserIDResponse> response = new AtomicReference<>();
+        try {
+            getFBInfoFromUserPageByUserIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
