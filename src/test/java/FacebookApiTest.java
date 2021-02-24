@@ -5,8 +5,10 @@ import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
 import model.facebook.user.request.InformationFromUserPageByUserIDRequest;
+import model.facebook.user.request.LastActivityDateByUserIDRequest;
 import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
 import model.facebook.user.response.InformationFromUserPageByUserIDResponse;
+import model.facebook.user.response.LastActivityDateByUserIDResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -304,5 +306,15 @@ public class FacebookApiTest {
                 .build();
         InformationFromUserPageByUserIDResponse response = manager.getFBInfoFromUserPageByUserID(request);
         Assertions.assertNotNull(response.getId());
+    }
+
+    @Test
+    void testGetLastActivityDateByUserID() {
+        LastActivityDateByUserIDRequest request = new LastActivityDateByUserIDRequest.Builder()
+                .withQuery("4")
+                .withTimeout(110)
+                .build();
+        LastActivityDateByUserIDResponse response = manager.getLastActivityDateByUserID(request);
+        Assertions.assertNotNull(response);
     }
 }

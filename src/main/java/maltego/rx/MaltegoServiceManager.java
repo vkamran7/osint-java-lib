@@ -8,8 +8,10 @@ import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
 import model.facebook.user.request.InformationFromUserPageByUserIDRequest;
+import model.facebook.user.request.LastActivityDateByUserIDRequest;
 import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
 import model.facebook.user.response.InformationFromUserPageByUserIDResponse;
+import model.facebook.user.response.LastActivityDateByUserIDResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -514,6 +516,23 @@ public final class MaltegoServiceManager {
         AtomicReference<InformationFromUserPageByUserIDResponse> response = new AtomicReference<>();
         try {
             getFBInfoFromUserPageByUserIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<LastActivityDateByUserIDResponse> getLastActivityDateByUserIDObs(LastActivityDateByUserIDRequest request) {
+        return maltegoAPI.getFBLastActivityDate(
+                request.getQuery(),
+                request.getTimeout()
+        );
+    }
+
+    public LastActivityDateByUserIDResponse getLastActivityDateByUserID(LastActivityDateByUserIDRequest request) {
+        AtomicReference<LastActivityDateByUserIDResponse> response = new AtomicReference<>();
+        try {
+            getLastActivityDateByUserIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

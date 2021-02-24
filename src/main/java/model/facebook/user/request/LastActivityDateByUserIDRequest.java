@@ -4,6 +4,13 @@ public class LastActivityDateByUserIDRequest {
     private String query; // facebook user id
     private Integer timeout;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
 
     public static final class Builder {
         private String query; // facebook user id
