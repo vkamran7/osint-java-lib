@@ -567,6 +567,24 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<RelationsByUserIDResponse> getFBRelationsByUserIDObs(RelationsByUserIDRequest request) {
+        return maltegoAPI.getFacebookRelationsByUserID(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public RelationsByUserIDResponse getFBRelationsByUserID(RelationsByUserIDRequest request) {
+        AtomicReference<RelationsByUserIDResponse> response = new AtomicReference<>();
+        try {
+            getFBRelationsByUserIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
