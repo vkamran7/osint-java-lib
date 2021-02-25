@@ -334,5 +334,16 @@ public class FacebookApiTest {
         // Request timeout error
     }
 
+    @Test
+    void testGetFBRelationsByUserID() {
+        RelationsByUserIDRequest request = new RelationsByUserIDRequest.Builder()
+                .withQuery("140")
+                .withLimit(3)
+                .withTimeout(100)
+                .build();
+        RelationsByUserIDResponse response = manager.getFBRelationsByUserID(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
+
 
 }
