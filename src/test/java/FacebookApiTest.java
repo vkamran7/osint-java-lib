@@ -345,5 +345,16 @@ public class FacebookApiTest {
         Assertions.assertEquals(3, response.getResult().size());
     }
 
+    @Test
+    void testGetFBRelativesByUserID() {
+        RelativesByUserIDRequest request = new RelativesByUserIDRequest.Builder()
+                .withQuery("140")
+                .withLimit(3)
+                .withTimeout(110)
+                .build();
+        RelativesByUserIDResponse response = manager.getFBRelativesByUserID(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
+
 
 }
