@@ -356,5 +356,13 @@ public class FacebookApiTest {
         Assertions.assertEquals(3, response.getResult().size());
     }
 
+    @Test
+    void testGetFBUserByEmail() {
+        UserByEmailRequest request = new UserByEmailRequest.Builder()
+                .withQuery("aleinovaov@mail.ru")
+                .build();
+        UserByEmailResponse response = manager.getFBUserByEmail(request);
+        Assertions.assertNotNull(response);
+    }
 
 }
