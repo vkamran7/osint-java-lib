@@ -603,6 +603,20 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<UserByEmailResponse> getFBUserByEmailObs(UserByEmailRequest request) {
+        return maltegoAPI.getFacebookUserByEmail(request.getQuery());
+    }
+
+    public UserByEmailResponse getFBUserByEmail(UserByEmailRequest request) {
+        AtomicReference<UserByEmailResponse> response = new AtomicReference<>();
+        try {
+            getFBUserByEmailObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {

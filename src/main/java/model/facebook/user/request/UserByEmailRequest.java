@@ -3,6 +3,9 @@ package model.facebook.user.request;
 public class UserByEmailRequest {
     private String query; // email
 
+    public String getQuery() {
+        return query;
+    }
 
     public static final class Builder {
         private String query; // email
