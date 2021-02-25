@@ -9,9 +9,11 @@ import model.facebook.photo.response.*;
 import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
 import model.facebook.user.request.InformationFromUserPageByUserIDRequest;
 import model.facebook.user.request.LastActivityDateByUserIDRequest;
+import model.facebook.user.request.MutualFriendsByUserIDRequest;
 import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
 import model.facebook.user.response.InformationFromUserPageByUserIDResponse;
 import model.facebook.user.response.LastActivityDateByUserIDResponse;
+import model.facebook.user.response.MutualFriendsByUserIDResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -533,6 +535,24 @@ public final class MaltegoServiceManager {
         AtomicReference<LastActivityDateByUserIDResponse> response = new AtomicReference<>();
         try {
             getLastActivityDateByUserIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<List<MutualFriendsByUserIDResponse>> getFBMutualFriendsByUserIDObs(MutualFriendsByUserIDRequest request) {
+        return maltegoAPI.getFacebookMutualFriendsByUserID(
+                request.getId1(),
+                request.getId2(),
+                request.getLimit()
+        );
+    }
+
+    public List<MutualFriendsByUserIDResponse> getFBMutualFriendsByUserID(MutualFriendsByUserIDRequest request) {
+        AtomicReference<List<MutualFriendsByUserIDResponse>> response = new AtomicReference<>();
+        try {
+            getFBMutualFriendsByUserIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

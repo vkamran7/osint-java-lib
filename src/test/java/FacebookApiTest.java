@@ -6,9 +6,11 @@ import model.facebook.photo.response.*;
 import model.facebook.user.request.ConvertToFoursquareEntitiesRequest;
 import model.facebook.user.request.InformationFromUserPageByUserIDRequest;
 import model.facebook.user.request.LastActivityDateByUserIDRequest;
+import model.facebook.user.request.MutualFriendsByUserIDRequest;
 import model.facebook.user.response.ConvertToFoursquareEntitiesResponse;
 import model.facebook.user.response.InformationFromUserPageByUserIDResponse;
 import model.facebook.user.response.LastActivityDateByUserIDResponse;
+import model.facebook.user.response.MutualFriendsByUserIDResponse;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
 import model.facebook.video.request.FacebookVideoDetailsRequest;
 import model.facebook.video.request.FacebookVideoV2Request;
@@ -315,6 +317,17 @@ public class FacebookApiTest {
                 .withTimeout(110)
                 .build();
         LastActivityDateByUserIDResponse response = manager.getLastActivityDateByUserID(request);
+        Assertions.assertNotNull(response);
+    }
+
+    @Test
+    void testGetFBMutualFriendsByUserID() {
+        MutualFriendsByUserIDRequest request = new MutualFriendsByUserIDRequest.Builder()
+                .withId1(100007463349883L)
+                .withId2(557543876L)
+                .withLimit(100)
+                .build();
+        List<MutualFriendsByUserIDResponse> response = manager.getFBMutualFriendsByUserID(request);
         Assertions.assertNotNull(response);
     }
 }

@@ -165,8 +165,8 @@ public interface MaltegoAPI {
     Observable<UserProfileByUserIDResponse> getFacebookUserProfileByUserID(@Query("query") String query);
 
     @GET("facebook/mutual_friends")
-    Observable<MutualFriendsByUserIDResponse> getFacebookMutualFriendsByUserID(@Query("id1") Integer id1,
-                                                                               @Query("id2") Integer id2,
+    Observable<List<MutualFriendsByUserIDResponse>> getFacebookMutualFriendsByUserID(@Query("id1") Long id1,
+                                                                               @Query("id2") Long id2,
                                                                                @Query("limit") Integer limit);
 
     @GET("facebook/friends/v3")

@@ -5,6 +5,17 @@ public class MutualFriendsByUserIDRequest {
     private Long id2; // Facebook User ID#2
     private Integer limit; // User List limit
 
+    public Long getId1() {
+        return id1;
+    }
+
+    public Long getId2() {
+        return id2;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
 
     public static final class Builder {
         private Long id1; // Facebook User ID#1
