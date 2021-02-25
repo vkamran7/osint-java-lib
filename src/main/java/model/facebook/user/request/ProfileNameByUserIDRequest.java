@@ -3,6 +3,9 @@ package model.facebook.user.request;
 public class ProfileNameByUserIDRequest {
     private String query;
 
+    public String getQuery() {
+        return query;
+    }
 
     public static final class Builder {
         private String query;
