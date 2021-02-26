@@ -617,6 +617,27 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<UserCoWorkersByUserIDV2Response> getFBUserCoWorkersByUserIDV2Obs(UserCoWorkersByUserIDV2Request request) {
+        return maltegoAPI.getFacebookUserCoWorksByUserIDV2(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout(),
+                request.getDelayed(),
+                request.getTaskTimeout(),
+                request.getTaskID()
+        );
+    }
+
+    public UserCoWorkersByUserIDV2Response getFBUserCoWorkersByUserIDV2(UserCoWorkersByUserIDV2Request request) {
+        AtomicReference<UserCoWorkersByUserIDV2Response> response = new AtomicReference<>();
+        try {
+            getFBUserCoWorkersByUserIDV2Obs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {

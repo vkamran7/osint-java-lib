@@ -364,5 +364,4 @@ public class FacebookApiTest {
         UserByEmailResponse response = manager.getFBUserByEmail(request);
         Assertions.assertNotNull(response);
     }
-
 }
