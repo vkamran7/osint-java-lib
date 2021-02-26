@@ -409,4 +409,13 @@ public class FacebookApiTest {
         UserFriendsListByUserIDResponse response = manager.getFBUserFriendsListByUserIDV3(request);
         Assertions.assertEquals(3, response.getCount());
     }
+
+    @Test
+    void testGetFBUserIDByAlias() {
+        UserIDByAliasRequest request = new UserIDByAliasRequest.Builder()
+                .withAlias("zuck")
+                .build();
+        UserIDByAliasResponse response = manager.getFBUserIDByAlias(request);
+        Assertions.assertNotNull(response);
+    }
 }

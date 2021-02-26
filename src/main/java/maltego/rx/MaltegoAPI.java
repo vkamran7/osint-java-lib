@@ -159,7 +159,7 @@ public interface MaltegoAPI {
     Observable<ProfileNameByUserIDResponse> getFacebookProfileNameByUserID(@Query("query") String query);
 
     @GET("fbparser/alias_to_id")
-    Observable<UserIDByAliasResponse> getFacebookUserIDByAlias(@Query("query") String query);
+    Observable<UserIDByAliasResponse> getFacebookUserIDByAlias(@Query("alias") String query);
 
     @GET("facebook/user/v4")
     Observable<UserProfileByUserIDResponse> getFacebookUserProfileByUserID(@Query("query") String query);
