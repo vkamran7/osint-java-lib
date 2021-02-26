@@ -399,4 +399,14 @@ public class FacebookApiTest {
         UserFollowingListByUserIDV3Response response = manager.getFBUserFollowingListByUserIDV3(request);
         Assertions.assertEquals(3, response.getResult().size());
     }
+
+    @Test
+    void testGetFBUserFriendsListByUserIDV3() {
+        UserFriendsListByUserIDRequest request = new UserFriendsListByUserIDRequest.Builder()
+                .withQuery("100007463349883")
+                .withLimit(3)
+                .build();
+        UserFriendsListByUserIDResponse response = manager.getFBUserFriendsListByUserIDV3(request);
+        Assertions.assertEquals(3, response.getCount());
+    }
 }

@@ -69,7 +69,7 @@ public final class MaltegoServiceManager {
         }).addInterceptor(logging)
         .connectTimeout(20, TimeUnit.SECONDS)
         .writeTimeout(20, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS);
+        .readTimeout(60, TimeUnit.SECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
