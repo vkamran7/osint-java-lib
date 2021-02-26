@@ -4,6 +4,7 @@ import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.response.ReactionsResponse;
 import model.facebook.post_reaction_place.response.RepostsResponse;
+import model.facebook.post_reaction_place.response.UserPostsByUserIDDelayedResponse;
 import model.facebook.post_reaction_place.response.UserPostsByUserIDResponse;
 import model.facebook.user.response.*;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
@@ -238,5 +239,11 @@ public interface MaltegoAPI {
     Observable<UserPostsByUserIDResponse> getFacebookUserPostsByUserID(@Query("query") String query,
                                                                        @Query("limit") Integer limit,
                                                                        @Query("timeout") Integer timeout);
+
+    @GET("delayed/facebook/user_posts")
+    Observable<UserPostsByUserIDDelayedResponse> getFacebookUserPostsByUserIDDelayed(@Query("query") String query,
+                                                                                     @Query("limit") Integer limit,
+                                                                                     @Query("task_id") Integer taskID,
+                                                                                     @Query("timeout") Integer timeout);
 //    facebook post & reactions & places ENDS
 }
