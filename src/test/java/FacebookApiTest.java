@@ -364,4 +364,17 @@ public class FacebookApiTest {
         UserByEmailResponse response = manager.getFBUserByEmail(request);
         Assertions.assertNotNull(response);
     }
+
+    @Test
+    void testGetFBUserCoWorkersByUserIDV2() {
+        UserCoWorkersByUserIDV2Request request = new UserCoWorkersByUserIDV2Request.Builder()
+                .withQuery("4")
+                .withLimit(3)
+                .withTimeout(110)
+                .withDelayed(0)
+                .withTaskTimeout(600)
+                .build();
+        UserCoWorkersByUserIDV2Response response = manager.getFBUserCoWorkersByUserIDV2(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
 }
