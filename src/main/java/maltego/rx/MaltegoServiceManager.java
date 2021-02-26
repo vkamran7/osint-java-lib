@@ -740,6 +740,25 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<UserLikesByUserIDResponse> getFBUserLikesByUserIDObs(UserLikesByUserIDRequest request) {
+        return maltegoAPI.getFacebookUserLikesByUserID(
+                request.getId1(),
+                request.getId2(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public UserLikesByUserIDResponse getFBUserLikesByUserID(UserLikesByUserIDRequest request) {
+        AtomicReference<UserLikesByUserIDResponse> response = new AtomicReference<>();
+        try {
+            getFBUserLikesByUserIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {

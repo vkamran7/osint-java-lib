@@ -6,6 +6,21 @@ public class UserLikesByUserIDRequest {
     private Integer limit;
     private Integer timeout;
 
+    public Long getId1() {
+        return id1;
+    }
+
+    public Long getId2() {
+        return id2;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
 
     public static final class Builder {
         private Long id1; // User ID

@@ -150,8 +150,8 @@ public interface MaltegoAPI {
     Observable<UserIDByProfileURLResponse> getFacebookUserIDByProfileURL(@Query("url") String url);
 
     @GET("facebook/user_likes/v2")
-    Observable<UserLikesByUserIDResponse> getFacebookUserLikesByUserID(@Query("id1") Integer id1,
-                                                                       @Query("id2") Integer di2,
+    Observable<UserLikesByUserIDResponse> getFacebookUserLikesByUserID(@Query("id1") Long id1,
+                                                                       @Query("id2") Long di2,
                                                                        @Query("limit") Integer limit,
                                                                        @Query("timeout") Integer timeout);
 
