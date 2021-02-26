@@ -249,5 +249,9 @@ public interface MaltegoAPI {
                                                                               @Query("location") String location,
                                                                               @Query("date") String date,
                                                                               @Query("timeout") Integer timeout);
+
+    @GET("facebook/post_detail")
+    Observable<PostInfoResponse> getFacebookPostInfoByOwnerIDPostID(@Query("owner_id") Long ownerID,
+                                                                    @Query("post_id") Long postID);
 //    facebook post & reactions & places ENDS
 }
