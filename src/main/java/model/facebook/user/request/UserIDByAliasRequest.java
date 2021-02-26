@@ -3,6 +3,9 @@ package model.facebook.user.request;
 public class UserIDByAliasRequest {
     private String alias; // User alias
 
+    public String getAlias() {
+        return alias;
+    }
 
     public static final class Builder {
         private String alias; // User alias

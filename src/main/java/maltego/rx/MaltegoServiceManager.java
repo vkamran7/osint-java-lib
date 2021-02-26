@@ -691,6 +691,20 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<UserIDByAliasResponse> getFBUserIDByAliasObs(UserIDByAliasRequest request) {
+        return maltegoAPI.getFacebookUserIDByAlias(request.getAlias());
+    }
+
+    public UserIDByAliasResponse getFBUserIDByAlias(UserIDByAliasRequest request) {
+        AtomicReference<UserIDByAliasResponse> response = new AtomicReference<>();
+        try {
+            getFBUserIDByAliasObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
