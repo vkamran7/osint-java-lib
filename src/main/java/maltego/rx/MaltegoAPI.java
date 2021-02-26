@@ -2,10 +2,7 @@ package maltego.rx;
 
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
-import model.facebook.post_reaction_place.response.ReactionsResponse;
-import model.facebook.post_reaction_place.response.RepostsResponse;
-import model.facebook.post_reaction_place.response.UserPostsByUserIDDelayedResponse;
-import model.facebook.post_reaction_place.response.UserPostsByUserIDResponse;
+import model.facebook.post_reaction_place.response.*;
 import model.facebook.user.response.*;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
 import model.facebook.video.response.FacebookVideoDetailsResponse;
@@ -245,5 +242,12 @@ public interface MaltegoAPI {
                                                                                      @Query("limit") Integer limit,
                                                                                      @Query("task_id") Integer taskID,
                                                                                      @Query("timeout") Integer timeout);
+
+    @GET("facebook/search_posts/v2")
+    Observable<PostsByPhraseResponse> searchFacebookPostsByPhraseLocationDate(@Query("query") String query,
+                                                                              @Query("limit") Integer limit,
+                                                                              @Query("location") String location,
+                                                                              @Query("date") String date,
+                                                                              @Query("timeout") Integer timeout);
 //    facebook post & reactions & places ENDS
 }
