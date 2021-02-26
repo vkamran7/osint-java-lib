@@ -440,4 +440,16 @@ public class FacebookApiTest {
         UserLearningTogetherV2Response response = manager.getFBUserLearningTogetherByUserIDV2(request);
         Assertions.assertEquals(3, response.getResult().size());
     }
+
+    @Test
+    void testGetFBUserLikesByUserID1() {
+        UserLikesByUserIDRequest request = new UserLikesByUserIDRequest.Builder()
+                .withId1(4L)
+                .withId2(140L)
+                .withLimit(1)
+                .withTimeout(110)
+                .build();
+        UserLikesByUserIDResponse response = manager.getFBUserLikesByUserID(request);
+        Assertions.assertEquals(1, response.getCount());
+    }
 }

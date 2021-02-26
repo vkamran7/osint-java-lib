@@ -10,6 +10,14 @@ public class UserLikesByUserIDResponse {
     @Expose
     private List<Result> result = null;
 
+    @SerializedName("count")
+    @Expose
+    private Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
     public List<Result> getResult() {
         return result;
     }
