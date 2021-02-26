@@ -4,6 +4,13 @@ public class UserFriendsListByUserIDRequest {
     private String query; // Facebook User ID
     private Integer limit;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
 
     public static final class Builder {
         private String query; // Facebook User ID

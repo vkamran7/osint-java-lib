@@ -674,6 +674,23 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<UserFriendsListByUserIDResponse> getFBUserFriendsListByUserIDV3Obs(UserFriendsListByUserIDRequest request) {
+        return maltegoAPI.getFacebookUserFriendsListByUserIDV3(
+                request.getQuery(),
+                request.getLimit()
+        );
+    }
+
+    public UserFriendsListByUserIDResponse getFBUserFriendsListByUserIDV3(UserFriendsListByUserIDRequest request) {
+        AtomicReference<UserFriendsListByUserIDResponse> response = new AtomicReference<>();
+        try {
+            getFBUserFriendsListByUserIDV3Obs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
