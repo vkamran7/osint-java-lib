@@ -452,4 +452,16 @@ public class FacebookApiTest {
         UserLikesByUserIDResponse response = manager.getFBUserLikesByUserID(request);
         Assertions.assertEquals(1, response.getCount());
     }
+
+    @Test
+    void testGetFBUserLikesByUserID2() {
+        UserLikesByUserIDRequest request = new UserLikesByUserIDRequest.Builder()
+                .withId1(4L)
+//                .withId2(140L)  Fill if you looking for mutual user likes, otherwise empty
+                .withLimit(3)
+                .withTimeout(110)
+                .build();
+        UserLikesByUserIDResponse response = manager.getFBUserLikesByUserID(request);
+        Assertions.assertEquals(3, response.getCount());
+    }
 }
