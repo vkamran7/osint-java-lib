@@ -253,5 +253,11 @@ public interface MaltegoAPI {
     @GET("facebook/post_detail")
     Observable<PostInfoResponse> getFacebookPostInfoByOwnerIDPostID(@Query("owner_id") Long ownerID,
                                                                     @Query("post_id") Long postID);
+
+    @GET("facebook/post_media")
+    Observable<PostMediaResponse> getFacebookPostMedia(@Query("query") String query,
+                                                       @Query("owner_id") Long ownerID,
+                                                       @Query("wall_owner") Long wallOwner,
+                                                       @Query("limit") Integer limit);
 //    facebook post & reactions & places ENDS
 }
