@@ -173,7 +173,7 @@ public interface MaltegoAPI {
     Observable<UserFriendsListByUserIDResponse> getFacebookUserFriendsListByUserIDV3(@Query("query") String query,
                                                                                      @Query("limit") Integer limit);
 
-    @GET("user_followers/v2")
+    @GET("facebook/user_followers/v2")
     Observable<UserFollowersListByUserIDV2Response> getFacebookUserFollowersListV2(@Query("query") String query,
                                                                                    @Query("limit") Integer limit,
                                                                                    @Query("timeout") Integer timeout);
