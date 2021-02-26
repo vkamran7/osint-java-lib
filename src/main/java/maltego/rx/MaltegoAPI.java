@@ -199,6 +199,7 @@ public interface MaltegoAPI {
                                                                          @Query("limit") Integer limit,
                                                                          @Query("timeout") Integer timeout,
                                                                          @Query("delayed") Integer delayed,
+                                                                         @Query("task_timeout") Integer taskTimeout,
                                                                          @Query("task_id") Integer taskId);
 
     @GET("facebook/search_relations")

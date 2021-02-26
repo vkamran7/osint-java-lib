@@ -719,6 +719,27 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<UserLearningTogetherV2Response> getFBUserLearningTogetherByUserIDV2Obs(UserLearningTogetherV2Request request) {
+        return maltegoAPI.getFBUserLearningTogether(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout(),
+                request.getDelayed(),
+                request.getTaskTimeout(),
+                request.getTaskId()
+        );
+    }
+
+    public UserLearningTogetherV2Response getFBUserLearningTogetherByUserIDV2(UserLearningTogetherV2Request request) {
+        AtomicReference<UserLearningTogetherV2Response> response = new AtomicReference<>();
+        try {
+            getFBUserLearningTogetherByUserIDV2Obs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {

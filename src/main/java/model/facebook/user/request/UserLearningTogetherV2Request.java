@@ -8,6 +8,29 @@ public class UserLearningTogetherV2Request {
     private Integer taskTimeout;
     private Integer taskId;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public Integer getDelayed() {
+        return delayed;
+    }
+
+    public Integer getTaskTimeout() {
+        return taskTimeout;
+    }
+
+    public Integer getTaskId() {
+        return taskId;
+    }
 
     public static final class Builder {
         private String query;  // Facebook User ID
