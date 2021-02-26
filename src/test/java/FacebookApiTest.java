@@ -464,4 +464,13 @@ public class FacebookApiTest {
         UserLikesByUserIDResponse response = manager.getFBUserLikesByUserID(request);
         Assertions.assertEquals(3, response.getCount());
     }
+
+    @Test
+    void testGetFBUserProfileUserID() {
+        UserProfileByUserIDRequest request = new UserProfileByUserIDRequest.Builder()
+                .withQuery("4")
+                .build();
+        UserProfileByUserIDResponse response = manager.getFBUserProfileUserID(request);
+        Assertions.assertNotNull(response);
+    }
 }
