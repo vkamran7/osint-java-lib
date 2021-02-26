@@ -388,4 +388,15 @@ public class FacebookApiTest {
         UserFollowersListByUserIDV2Response response = manager.getFBUserFollowersListByUserIDV2(request);
         Assertions.assertEquals(2, response.getResult().size());
     }
+
+    @Test
+    void testGetFBUserFollowingListByUserIDV3() {
+        UserFollowingListByUserIDV3Request request = new UserFollowingListByUserIDV3Request.Builder()
+                .withQuery("1245484076")
+                .withLimit(3)
+                .withTimeout(110)
+                .build();
+        UserFollowingListByUserIDV3Response response = manager.getFBUserFollowingListByUserIDV3(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
 }

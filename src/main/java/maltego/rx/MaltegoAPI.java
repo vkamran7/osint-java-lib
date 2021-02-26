@@ -178,7 +178,7 @@ public interface MaltegoAPI {
                                                                                    @Query("limit") Integer limit,
                                                                                    @Query("timeout") Integer timeout);
 
-    @GET("user_following/v3")
+    @GET("facebook/user_following/v3")
     Observable<UserFollowingListByUserIDV3Response> getFacebookUserFollowingListV3(@Query("query") String query,
                                                                                    @Query("limit") Integer limit,
                                                                                    @Query("timeout") Integer timeout);
