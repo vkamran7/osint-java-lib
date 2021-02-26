@@ -418,4 +418,13 @@ public class FacebookApiTest {
         UserIDByAliasResponse response = manager.getFBUserIDByAlias(request);
         Assertions.assertNotNull(response);
     }
+
+    @Test
+    void testGetFBUserIDByProfileURL() {
+        UserIDByProfileURLRequest request = new UserIDByProfileURLRequest.Builder()
+                .withUrl("https://www.facebook.com/zuck")
+                .build();
+        UserIDByProfileURLResponse response = manager.getFBUserIDByProfileURL(request);
+        Assertions.assertNotNull(response);
+    }
 }
