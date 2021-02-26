@@ -2,6 +2,7 @@ package maltego.rx;
 
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
+import model.facebook.post_reaction_place.response.ReactionsResponse;
 import model.facebook.user.response.*;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
 import model.facebook.video.response.FacebookVideoDetailsResponse;
@@ -219,4 +220,12 @@ public interface MaltegoAPI {
     @GET("foursquare/facebook_to_foursquare")
     Observable<ConvertToFoursquareEntitiesResponse> getFBConvertToFoursquare(@Query("query") String query);
 //    facebook user ENDS
+
+//    facebook post & reactions & places STARTS
+    @GET("facebook/reactions")
+    Observable<ReactionsResponse> getFacebookReactionsOfPhotoVideoPostComment(@Query("id") Long id,
+                                                                              @Query("limit") Integer limit,
+                                                                              @Query("is_comment") Integer isComment);
+
+//    facebook post & reactions & places ENDS
 }
