@@ -427,4 +427,17 @@ public class FacebookApiTest {
         UserIDByProfileURLResponse response = manager.getFBUserIDByProfileURL(request);
         Assertions.assertNotNull(response);
     }
+
+    @Test
+    void testGetFBUserLearningTogetherByUserIDV2() {
+        UserLearningTogetherV2Request request = new UserLearningTogetherV2Request.Builder()
+                .withQuery("4")
+                .withLimit(3)
+                .withTimeout(110)
+                .withDelayed(0)
+                .withTaskTimeout(600)
+                .build();
+        UserLearningTogetherV2Response response = manager.getFBUserLearningTogetherByUserIDV2(request);
+        Assertions.assertEquals(3, response.getResult().size());
+    }
 }
