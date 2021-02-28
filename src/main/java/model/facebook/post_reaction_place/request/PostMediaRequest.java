@@ -6,6 +6,21 @@ public class PostMediaRequest {
     private Long wallOwner;
     private Integer limit;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Long getOwnerID() {
+        return ownerID;
+    }
+
+    public Long getWallOwner() {
+        return wallOwner;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
 
     public static final class Builder {
         private String query; // Post/Photo/Video ID

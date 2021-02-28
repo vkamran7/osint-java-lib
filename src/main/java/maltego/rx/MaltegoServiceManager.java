@@ -886,6 +886,25 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<PostMediaResponse> getFBPostMediaObs(PostMediaRequest request) {
+        return maltegoAPI.getFacebookPostMedia(
+                request.getQuery(),
+                request.getOwnerID(),
+                request.getWallOwner(),
+                request.getLimit()
+        );
+    }
+
+    public PostMediaResponse getFBPostMedia(PostMediaRequest request) {
+        AtomicReference<PostMediaResponse> response = new AtomicReference<>();
+        try {
+            getFBPostMediaObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {
 //                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
