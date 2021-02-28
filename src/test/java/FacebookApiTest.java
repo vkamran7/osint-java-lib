@@ -1,12 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
-import model.facebook.group.request.GroupMembersByGroupIDDelayedRequest;
-import model.facebook.group.request.GroupMembersByGroupIDRequest;
-import model.facebook.group.request.GroupPostsByGroupIDRequest;
-import model.facebook.group.request.GroupsByNameRequest;
-import model.facebook.group.response.GroupMembersByGroupIDDelayedResponse;
-import model.facebook.group.response.GroupMembersByGroupIDResponse;
-import model.facebook.group.response.GroupPostsByGroupIDResponse;
-import model.facebook.group.response.GroupsByNameResponse;
+import model.facebook.group.request.*;
+import model.facebook.group.response.*;
 import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
@@ -604,5 +598,15 @@ public class FacebookApiTest {
         GroupPostsByGroupIDResponse response = manager.getFBGroupPostsByGroupID(request);
 //        Assertions.assertEquals(2, response.getResult().size());
         // response is null here
+    }
+
+    @Test
+    void testGetFBGroupDetailsByGroupID() {
+        GroupDetailsByGroupIDRequest request = new GroupDetailsByGroupIDRequest.Builder()
+                .withQuery("651664324910033")
+                .withLimit(3)
+                .build();
+        GroupDetailsByGroupIDResponse response = manager.getFBGroupDetailsByGroupID(request);
+
     }
 }
