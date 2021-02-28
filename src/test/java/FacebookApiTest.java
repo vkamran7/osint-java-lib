@@ -4,7 +4,9 @@ import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.request.ReactionsRequest;
+import model.facebook.post_reaction_place.request.RepostsRequest;
 import model.facebook.post_reaction_place.response.ReactionsResponse;
+import model.facebook.post_reaction_place.response.RepostsResponse;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -485,5 +487,16 @@ public class FacebookApiTest {
                 .build();
         List<ReactionsResponse> response = manager.getFBReactionsOfPhotoVideoPostComment(request);
         Assertions.assertEquals(3, response.size());
+    }
+
+    @Test
+    void testGetFBRepostsOfPhotoVideoPost() {
+        RepostsRequest request = new RepostsRequest.Builder()
+                .withQuery("10102454385528521")
+                .withLimit(3)
+                .withTimeout(115)
+                .build();
+        RepostsResponse response = manager.getFBRepostsOfPhotoVideoPost(request);
+        Assertions.assertEquals(3, response.getResult().size());
     }
 }
