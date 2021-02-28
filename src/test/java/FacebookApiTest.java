@@ -3,14 +3,8 @@ import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
-import model.facebook.post_reaction_place.request.ReactionsRequest;
-import model.facebook.post_reaction_place.request.RepostsRequest;
-import model.facebook.post_reaction_place.request.UserPostsByUserIDDelayedRequest;
-import model.facebook.post_reaction_place.request.UserPostsByUserIDRequest;
-import model.facebook.post_reaction_place.response.ReactionsResponse;
-import model.facebook.post_reaction_place.response.RepostsResponse;
-import model.facebook.post_reaction_place.response.UserPostsByUserIDDelayedResponse;
-import model.facebook.post_reaction_place.response.UserPostsByUserIDResponse;
+import model.facebook.post_reaction_place.request.*;
+import model.facebook.post_reaction_place.response.*;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -524,5 +518,18 @@ public class FacebookApiTest {
                 .build();
         UserPostsByUserIDDelayedResponse response = manager.getFBUserPostsByUserIDDelayed(request);
         Assertions.assertEquals(10, response.getResult().size());
+    }
+
+    @Test
+    void testSearchFBPostsByPhraseLocationDate() {
+        PostByPhraseRequest request = new PostByPhraseRequest.Builder()
+                .withQuery("avia")
+                .withLimit(5)
+                .withLocation("moscow")
+                .withDate("2018")
+                .withTimeout(110)
+                .build();
+        PostsByPhraseResponse response = manager.searchFBPostsByPhraseLocationDate(request);
+        Assertions.assertEquals(5, response.getResult().size());
     }
 }
