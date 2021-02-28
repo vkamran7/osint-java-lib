@@ -869,6 +869,22 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
+    public Observable<PostInfoResponse> getFBPostInfoByOwnerIDPostIDObs(PostInfoRequest request) {
+        return maltegoAPI.getFacebookPostInfoByOwnerIDPostID(
+                request.getOwnerID(),
+                request.getPostID()
+        );
+    }
+
+    public PostInfoResponse getFBPostInfoByOwnerIDPostID(PostInfoRequest request) {
+        AtomicReference<PostInfoResponse> response = new AtomicReference<>();
+        try {
+            getFBPostInfoByOwnerIDPostIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
 
 //    private static OkHttpClient client = new OkHttpClient.Builder()
 //            .addInterceptor(chain -> {

@@ -4,6 +4,13 @@ public class PostInfoRequest {
     private Long ownerID; // Facebook User ID Owner
     private Long postID; // Facebook Post ID
 
+    public Long getOwnerID() {
+        return ownerID;
+    }
+
+    public Long getPostID() {
+        return postID;
+    }
 
     public static final class Builder {
         private Long ownerID; // Facebook User ID Owner
