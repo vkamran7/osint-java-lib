@@ -7,7 +7,9 @@ import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.request.ReactionsRequest;
+import model.facebook.post_reaction_place.request.RepostsRequest;
 import model.facebook.post_reaction_place.response.ReactionsResponse;
+import model.facebook.post_reaction_place.response.RepostsResponse;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -788,6 +790,24 @@ public final class MaltegoServiceManager {
         AtomicReference<List<ReactionsResponse>> response = new AtomicReference<>();
         try {
             getFBReactionsOfPhotoVideoPostCommentObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<RepostsResponse> getFBRepostsOfPhotoVideoPostObs(RepostsRequest request) {
+        return maltegoAPI.getFacebookRepostsOfPhotoVideoPost(
+                request.getQuery(),
+                request.getTimeout(),
+                request.getLimit()
+        );
+    }
+
+    public RepostsResponse getFBRepostsOfPhotoVideoPost(RepostsRequest request) {
+        AtomicReference<RepostsResponse> response = new AtomicReference<>();
+        try {
+            getFBRepostsOfPhotoVideoPostObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

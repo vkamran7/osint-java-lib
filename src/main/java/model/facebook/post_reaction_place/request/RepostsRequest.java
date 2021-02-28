@@ -5,6 +5,17 @@ public class RepostsRequest {
     private Integer timeout;
     private Integer limit;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
 
     public static final class Builder {
         private String query;
