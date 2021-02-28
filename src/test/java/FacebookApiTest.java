@@ -542,4 +542,15 @@ public class FacebookApiTest {
         PostInfoResponse response = manager.getFBPostInfoByOwnerIDPostID(request);
         Assertions.assertNotNull(response);
     }
+
+    @Test
+    void testGetFBPostMedia() {
+        PostMediaRequest request = new PostMediaRequest.Builder()
+                .withQuery("10104242980739381")
+                .withLimit(1)
+                .withOwnerID(4L)
+                .build();
+        PostMediaResponse response = manager.getFBPostMedia(request);
+        Assertions.assertEquals(1, response.getCount());
+    }
 }
