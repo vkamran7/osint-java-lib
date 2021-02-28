@@ -2,6 +2,8 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.facebook.group.request.GroupsByNameRequest;
+import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
@@ -906,5 +908,25 @@ public final class MaltegoServiceManager {
     }
     // Facebook post & reactions & places STARTS
 
+
+//    Facebook Groups STARTS
+    public Observable<GroupsByNameResponse> searchFBGroupsByNameObs(GroupsByNameRequest request) {
+        return maltegoAPI.searchFacebookGroupsByName(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public GroupsByNameResponse searchFBGroupsByName(GroupsByNameRequest request) {
+        AtomicReference<GroupsByNameResponse> response = new AtomicReference<>();
+        try {
+            searchFBGroupsByNameObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+//    Facebook Group ENDS
 
 }
