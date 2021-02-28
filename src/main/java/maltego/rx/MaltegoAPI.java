@@ -1,6 +1,7 @@
 package maltego.rx;
 
 import model.facebook.group.response.GroupMembersByGroupIDResponse;
+import model.facebook.group.response.GroupPostsByGroupIDResponse;
 import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
@@ -282,5 +283,9 @@ public interface MaltegoAPI {
                                                                                       @Query("limit") Integer limit,
                                                                                       @Query("timeout") Integer timeout,
                                                                                       @Query("task_id") Integer taskID);
+
+    @GET("facebook/group_posts")
+    Observable<GroupPostsByGroupIDResponse> getFacebookGroupPostsByGroupID(@Query("query") String query,
+                                                                           @Query("limit") Integer limit);
 //    Facebook Groups ENDS
 }
