@@ -1,5 +1,6 @@
 package maltego.rx;
 
+import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.response.*;
@@ -262,4 +263,12 @@ public interface MaltegoAPI {
                                                        @Query("wall_owner") Long wallOwner,
                                                        @Query("limit") Integer limit);
 //    facebook post & reactions & places ENDS
+
+
+//    Facebook Groups STARTS
+    @GET("facebook/search_groups/v2")
+    Observable<GroupsByNameResponse> searchFacebookGroupsByName(@Query("query") String query,
+                                                                @Query("limit") Integer limit,
+                                                                @Query("timeout") Integer timeout);
+//    Facebook Groups ENDS
 }
