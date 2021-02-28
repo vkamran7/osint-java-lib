@@ -6,14 +6,8 @@ import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
-import model.facebook.post_reaction_place.request.ReactionsRequest;
-import model.facebook.post_reaction_place.request.RepostsRequest;
-import model.facebook.post_reaction_place.request.UserPostsByUserIDDelayedRequest;
-import model.facebook.post_reaction_place.request.UserPostsByUserIDRequest;
-import model.facebook.post_reaction_place.response.ReactionsResponse;
-import model.facebook.post_reaction_place.response.RepostsResponse;
-import model.facebook.post_reaction_place.response.UserPostsByUserIDDelayedResponse;
-import model.facebook.post_reaction_place.response.UserPostsByUserIDResponse;
+import model.facebook.post_reaction_place.request.*;
+import model.facebook.post_reaction_place.response.*;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -849,6 +843,26 @@ public final class MaltegoServiceManager {
         AtomicReference<UserPostsByUserIDDelayedResponse> response = new AtomicReference<>();
         try {
             getFBUserPostsByUserIDDelayedObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<PostsByPhraseResponse> searchFBPostsByPhraseLocationDateObs(PostByPhraseRequest request) {
+        return maltegoAPI.searchFacebookPostsByPhraseLocationDate(
+                request.getQuery(),
+                request.getLimit(),
+                request.getLocation(),
+                request.getDate(),
+                request.getTimeout()
+        );
+    }
+
+    public PostsByPhraseResponse searchFBPostsByPhraseLocationDate(PostByPhraseRequest request) {
+        AtomicReference<PostsByPhraseResponse> response = new AtomicReference<>();
+        try {
+            searchFBPostsByPhraseLocationDateObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
