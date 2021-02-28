@@ -777,15 +777,15 @@ public final class MaltegoServiceManager {
     // Facebook Users ENDS
 
     // Facebook post & reactions & places STARTS
-    public Observable<ReactionsResponse> getFBReactionsOfPhotoVideoPostCommentObs(ReactionsRequest request) {
+    public Observable<List<ReactionsResponse>> getFBReactionsOfPhotoVideoPostCommentObs(ReactionsRequest request) {
         return maltegoAPI.getFacebookReactionsOfPhotoVideoPostComment(
                 request.getId(),
                 request.getLimit(),
                 request.getIsComment());
     }
 
-    public ReactionsResponse getFBReactionsOfPhotoVideoPostComment(ReactionsRequest request) {
-        AtomicReference<ReactionsResponse> response = new AtomicReference<>();
+    public List<ReactionsResponse> getFBReactionsOfPhotoVideoPostComment(ReactionsRequest request) {
+        AtomicReference<List<ReactionsResponse>> response = new AtomicReference<>();
         try {
             getFBReactionsOfPhotoVideoPostCommentObs(request).subscribe(response::set);
         } catch (Exception ex) {

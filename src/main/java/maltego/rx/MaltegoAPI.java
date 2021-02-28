@@ -225,7 +225,7 @@ public interface MaltegoAPI {
 
 //    facebook post & reactions & places STARTS
     @GET("facebook/reactions")
-    Observable<ReactionsResponse> getFacebookReactionsOfPhotoVideoPostComment(@Query("id") Long id,
+    Observable<List<ReactionsResponse>> getFacebookReactionsOfPhotoVideoPostComment(@Query("id") Long id,
                                                                               @Query("limit") Integer limit,
                                                                               @Query("is_comment") Integer isComment);
 

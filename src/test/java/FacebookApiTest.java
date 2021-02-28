@@ -3,6 +3,8 @@ import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
+import model.facebook.post_reaction_place.request.ReactionsRequest;
+import model.facebook.post_reaction_place.response.ReactionsResponse;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
 import model.facebook.video.request.FacebookVideoByGeoRequest;
@@ -472,5 +474,16 @@ public class FacebookApiTest {
                 .build();
         UserProfileByUserIDResponse response = manager.getFBUserProfileUserID(request);
         Assertions.assertNotNull(response);
+    }
+
+    @Test
+    void testGetFBReactionsOfPhotoVideoPostCommentObs() {
+        ReactionsRequest request = new ReactionsRequest.Builder()
+                .withId(926493200718452L)
+                .withLimit(3)
+                .withIsComment(0)
+                .build();
+        List<ReactionsResponse> response = manager.getFBReactionsOfPhotoVideoPostComment(request);
+        Assertions.assertEquals(3, response.size());
     }
 }
