@@ -1,5 +1,7 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.group.request.GroupMembersByGroupIDRequest;
 import model.facebook.group.request.GroupsByNameRequest;
+import model.facebook.group.response.GroupMembersByGroupIDResponse;
 import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.request.*;
 import model.facebook.page.response.*;
@@ -565,5 +567,16 @@ public class FacebookApiTest {
                 .build();
         GroupsByNameResponse response = manager.searchFBGroupsByName(request);
         Assertions.assertEquals(3, response.getResult().size());
+    }
+
+    @Test
+    void testGetFacebookGroupMembersByGroupID() {
+        GroupMembersByGroupIDRequest request = new GroupMembersByGroupIDRequest.Builder()
+                .withQuery("385739471616925")
+                .withLimit(100)
+                .withTimeout(100)
+                .build();
+        GroupMembersByGroupIDResponse response = manager.getFacebookGroupMembersByGroupID(request);
+        Assertions.assertEquals(100, response.getResult().size());
     }
 }
