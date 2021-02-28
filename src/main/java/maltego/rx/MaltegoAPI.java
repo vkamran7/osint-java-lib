@@ -276,5 +276,11 @@ public interface MaltegoAPI {
     Observable<GroupMembersByGroupIDResponse> getFacebookGroupMembersByGroupID(@Query("query") String query,
                                                                                @Query("limit") Integer limit,
                                                                                @Query("timeout") Integer timeout);
+
+    @GET("delayed/facebook/group_members")
+    Observable<GroupMembersByGroupIDResponse> getFacebookGroupMembersByGroupIDDelayed(@Query("query") String query,
+                                                                                      @Query("limit") Integer limit,
+                                                                                      @Query("timeout") Integer timeout,
+                                                                                      @Query("task_id") Integer taskID);
 //    Facebook Groups ENDS
 }
