@@ -5,6 +5,17 @@ public class ReactionsRequest {
     private Integer limit;
     private Integer isComment;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getIsComment() {
+        return isComment;
+    }
 
     public static final class Builder {
         private Long id;
