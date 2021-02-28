@@ -8,9 +8,11 @@ import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.request.ReactionsRequest;
 import model.facebook.post_reaction_place.request.RepostsRequest;
+import model.facebook.post_reaction_place.request.UserPostsByUserIDDelayedRequest;
 import model.facebook.post_reaction_place.request.UserPostsByUserIDRequest;
 import model.facebook.post_reaction_place.response.ReactionsResponse;
 import model.facebook.post_reaction_place.response.RepostsResponse;
+import model.facebook.post_reaction_place.response.UserPostsByUserIDDelayedResponse;
 import model.facebook.post_reaction_place.response.UserPostsByUserIDResponse;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
@@ -828,6 +830,25 @@ public final class MaltegoServiceManager {
         AtomicReference<UserPostsByUserIDResponse> response = new AtomicReference<>();
         try {
             getFBkUserPostsByUserIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<UserPostsByUserIDDelayedResponse> getFBUserPostsByUserIDDelayedObs(UserPostsByUserIDDelayedRequest request) {
+        return maltegoAPI.getFacebookUserPostsByUserIDDelayed(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTaskID(),
+                request.getTimeout()
+        );
+    }
+
+    public UserPostsByUserIDDelayedResponse getFBUserPostsByUserIDDelayed(UserPostsByUserIDDelayedRequest request) {
+        AtomicReference<UserPostsByUserIDDelayedResponse> response = new AtomicReference<>();
+        try {
+            getFBUserPostsByUserIDDelayedObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

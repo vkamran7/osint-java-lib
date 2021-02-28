@@ -6,6 +6,21 @@ public class UserPostsByUserIDDelayedRequest {
     private Integer taskID;
     private Integer timeout;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getTaskID() {
+        return taskID;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
 
     public static final class Builder {
         private String query;
