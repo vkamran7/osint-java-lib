@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.facebook.group.request.GroupMembersByGroupIDDelayedRequest;
 import model.facebook.group.request.GroupMembersByGroupIDRequest;
+import model.facebook.group.request.GroupPostsByGroupIDRequest;
 import model.facebook.group.request.GroupsByNameRequest;
 import model.facebook.group.response.GroupMembersByGroupIDDelayedResponse;
 import model.facebook.group.response.GroupMembersByGroupIDResponse;
+import model.facebook.group.response.GroupPostsByGroupIDResponse;
 import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.request.*;
 import model.facebook.page.response.*;
@@ -960,6 +962,23 @@ public final class MaltegoServiceManager {
         AtomicReference<GroupMembersByGroupIDDelayedResponse> response = new AtomicReference<>();
         try {
             getFBGroupMembersByGroupIDDelayedObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<GroupPostsByGroupIDResponse> getFBGroupPostsByGroupIDObs(GroupPostsByGroupIDRequest request) {
+        return maltegoAPI.getFacebookGroupPostsByGroupID(
+                request.getQuery(),
+                request.getLimit()
+        );
+    }
+
+    public GroupPostsByGroupIDResponse getFBGroupPostsByGroupID(GroupPostsByGroupIDRequest request) {
+        AtomicReference<GroupPostsByGroupIDResponse> response = new AtomicReference<>();
+        try {
+            getFBGroupPostsByGroupIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
