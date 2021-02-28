@@ -1,4 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.group.request.GroupsByNameRequest;
+import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.request.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.request.*;
@@ -552,5 +554,16 @@ public class FacebookApiTest {
                 .build();
         PostMediaResponse response = manager.getFBPostMedia(request);
         Assertions.assertEquals(1, response.getCount());
+    }
+
+    @Test
+    void testSearchFBGroupsByName() {
+        GroupsByNameRequest request = new GroupsByNameRequest.Builder()
+                .withQuery("home")
+                .withLimit(3)
+                .withTimeout(110)
+                .build();
+        GroupsByNameResponse response = manager.searchFBGroupsByName(request);
+        Assertions.assertEquals(3, response.getResult().size());
     }
 }
