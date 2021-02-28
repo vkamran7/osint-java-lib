@@ -904,12 +904,7 @@ public final class MaltegoServiceManager {
         }
         return response.get();
     }
+    // Facebook post & reactions & places STARTS
 
-//    private static OkHttpClient client = new OkHttpClient.Builder()
-//            .addInterceptor(chain -> {
-//                Request request = chain.request().newBuilder().addHeader("Authorization", API_KEY).build();
-//                return chain.proceed(request);
-//            })
-//            .retryOnConnectionFailure(true)
-//            .build();
+
 }
