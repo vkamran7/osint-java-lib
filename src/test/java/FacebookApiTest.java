@@ -576,7 +576,7 @@ public class FacebookApiTest {
                 .withLimit(100)
                 .withTimeout(100)
                 .build();
-        GroupMembersByGroupIDResponse response = manager.getFacebookGroupMembersByGroupID(request);
+        GroupMembersByGroupIDResponse response = manager.getFBGroupMembersByGroupID(request);
         Assertions.assertEquals(100, response.getResult().size());
     }
 }

@@ -2,8 +2,10 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.facebook.group.request.GroupMembersByGroupIDDelayedRequest;
 import model.facebook.group.request.GroupMembersByGroupIDRequest;
 import model.facebook.group.request.GroupsByNameRequest;
+import model.facebook.group.response.GroupMembersByGroupIDDelayedResponse;
 import model.facebook.group.response.GroupMembersByGroupIDResponse;
 import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.request.*;
@@ -20,16 +22,13 @@ import model.facebook.video.request.FacebookVideoV2Request;
 import model.facebook.video.response.FacebookVideoByGeoResponse;
 import model.facebook.video.response.FacebookVideoDetailsResponse;
 import model.facebook.video.response.FacebookVideoV2Response;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.Single;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -930,7 +929,7 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 
-    public Observable<GroupMembersByGroupIDResponse> getFacebookGroupMembersByGroupIDObs(GroupMembersByGroupIDRequest request) {
+    public Observable<GroupMembersByGroupIDResponse> getFBGroupMembersByGroupIDObs(GroupMembersByGroupIDRequest request) {
         return maltegoAPI.getFacebookGroupMembersByGroupID(
                 request.getQuery(),
                 request.getLimit(),
@@ -938,10 +937,29 @@ public final class MaltegoServiceManager {
         );
     }
 
-    public GroupMembersByGroupIDResponse getFacebookGroupMembersByGroupID(GroupMembersByGroupIDRequest request) {
+    public GroupMembersByGroupIDResponse getFBGroupMembersByGroupID(GroupMembersByGroupIDRequest request) {
         AtomicReference<GroupMembersByGroupIDResponse> response = new AtomicReference<>();
         try {
-            getFacebookGroupMembersByGroupIDObs(request).subscribe(response::set);
+            getFBGroupMembersByGroupIDObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<GroupMembersByGroupIDDelayedResponse> getFBGroupMembersByGroupIDDelayedObs(GroupMembersByGroupIDDelayedRequest request) {
+        return maltegoAPI.getFacebookGroupMembersByGroupIDDelayed(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout(),
+                request.getTaskID()
+        );
+    }
+
+    public GroupMembersByGroupIDDelayedResponse getFBGroupMembersByGroupIDDelayed(GroupMembersByGroupIDDelayedRequest request) {
+        AtomicReference<GroupMembersByGroupIDDelayedResponse> response = new AtomicReference<>();
+        try {
+            getFBGroupMembersByGroupIDDelayedObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

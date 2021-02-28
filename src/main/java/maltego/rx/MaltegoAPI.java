@@ -1,9 +1,6 @@
 package maltego.rx;
 
-import model.facebook.group.response.GroupDetailsByGroupIDResponse;
-import model.facebook.group.response.GroupMembersByGroupIDResponse;
-import model.facebook.group.response.GroupPostsByGroupIDResponse;
-import model.facebook.group.response.GroupsByNameResponse;
+import model.facebook.group.response.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.response.*;
@@ -280,10 +277,10 @@ public interface MaltegoAPI {
                                                                                @Query("timeout") Integer timeout);
 
     @GET("delayed/facebook/group_members")
-    Observable<GroupMembersByGroupIDResponse> getFacebookGroupMembersByGroupIDDelayed(@Query("query") String query,
-                                                                                      @Query("limit") Integer limit,
-                                                                                      @Query("timeout") Integer timeout,
-                                                                                      @Query("task_id") Integer taskID);
+    Observable<GroupMembersByGroupIDDelayedResponse> getFacebookGroupMembersByGroupIDDelayed(@Query("query") String query,
+                                                                                             @Query("limit") Integer limit,
+                                                                                             @Query("timeout") Integer timeout,
+                                                                                             @Query("task_id") Integer taskID);
 
     @GET("facebook/group_posts")
     Observable<GroupPostsByGroupIDResponse> getFacebookGroupPostsByGroupID(@Query("query") String query,
