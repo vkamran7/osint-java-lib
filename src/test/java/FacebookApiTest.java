@@ -5,9 +5,11 @@ import model.facebook.photo.request.*;
 import model.facebook.photo.response.*;
 import model.facebook.post_reaction_place.request.ReactionsRequest;
 import model.facebook.post_reaction_place.request.RepostsRequest;
+import model.facebook.post_reaction_place.request.UserPostsByUserIDDelayedRequest;
 import model.facebook.post_reaction_place.request.UserPostsByUserIDRequest;
 import model.facebook.post_reaction_place.response.ReactionsResponse;
 import model.facebook.post_reaction_place.response.RepostsResponse;
+import model.facebook.post_reaction_place.response.UserPostsByUserIDDelayedResponse;
 import model.facebook.post_reaction_place.response.UserPostsByUserIDResponse;
 import model.facebook.user.request.*;
 import model.facebook.user.response.*;
@@ -511,5 +513,16 @@ public class FacebookApiTest {
                 .build();
         UserPostsByUserIDResponse response = manager.getFBkUserPostsByUserID(request);
         Assertions.assertEquals(3, response.getResult().size());
+    }
+
+    @Test
+    void testGetFBUserPostsByUserIDDelayed() {
+        UserPostsByUserIDDelayedRequest request = new UserPostsByUserIDDelayedRequest.Builder()
+                .withQuery("4")
+                .withLimit(10)
+                .withTimeout(100)
+                .build();
+        UserPostsByUserIDDelayedResponse response = manager.getFBUserPostsByUserIDDelayed(request);
+        Assertions.assertEquals(10, response.getResult().size());
     }
 }
