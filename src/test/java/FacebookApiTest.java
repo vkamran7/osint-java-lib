@@ -532,4 +532,14 @@ public class FacebookApiTest {
         PostsByPhraseResponse response = manager.searchFBPostsByPhraseLocationDate(request);
         Assertions.assertEquals(5, response.getResult().size());
     }
+
+    @Test
+    void testGetFBPostInfoByOwnerIDPostID() {
+        PostInfoRequest request = new PostInfoRequest.Builder()
+                .withOwnerID(4L)
+                .withPostID(10104242980739381L)
+                .build();
+        PostInfoResponse response = manager.getFBPostInfoByOwnerIDPostID(request);
+        Assertions.assertNotNull(response);
+    }
 }
