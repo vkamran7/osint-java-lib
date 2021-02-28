@@ -2,7 +2,9 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.facebook.group.request.GroupMembersByGroupIDRequest;
 import model.facebook.group.request.GroupsByNameRequest;
+import model.facebook.group.response.GroupMembersByGroupIDResponse;
 import model.facebook.group.response.GroupsByNameResponse;
 import model.facebook.page.request.*;
 import model.facebook.page.response.*;
@@ -922,6 +924,24 @@ public final class MaltegoServiceManager {
         AtomicReference<GroupsByNameResponse> response = new AtomicReference<>();
         try {
             searchFBGroupsByNameObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+
+    public Observable<GroupMembersByGroupIDResponse> getFacebookGroupMembersByGroupIDObs(GroupMembersByGroupIDRequest request) {
+        return maltegoAPI.getFacebookGroupMembersByGroupID(
+                request.getQuery(),
+                request.getLimit(),
+                request.getTimeout()
+        );
+    }
+
+    public GroupMembersByGroupIDResponse getFacebookGroupMembersByGroupID(GroupMembersByGroupIDRequest request) {
+        AtomicReference<GroupMembersByGroupIDResponse> response = new AtomicReference<>();
+        try {
+            getFacebookGroupMembersByGroupIDObs(request).subscribe(response::set);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
