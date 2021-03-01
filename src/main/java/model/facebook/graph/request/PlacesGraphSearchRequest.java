@@ -1,6 +1,6 @@
 package model.facebook.graph.request;
 
-public class GetPlacesGraphSearchRequest {
+public class PlacesGraphSearchRequest {
     private String query;
     private Integer limit;
     private Integer timeout;
@@ -45,8 +45,8 @@ public class GetPlacesGraphSearchRequest {
             return this;
         }
 
-        public GetPlacesGraphSearchRequest build() {
-            GetPlacesGraphSearchRequest getPlacesGraphSearchRequest = new GetPlacesGraphSearchRequest();
+        public PlacesGraphSearchRequest build() {
+            PlacesGraphSearchRequest getPlacesGraphSearchRequest = new PlacesGraphSearchRequest();
             getPlacesGraphSearchRequest.limit = this.limit;
             getPlacesGraphSearchRequest.timeout = this.timeout;
             getPlacesGraphSearchRequest.query = this.query;
