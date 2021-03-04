@@ -1,4 +1,6 @@
 import maltego.rx.MaltegoServiceManager;
+import model.facebook.graph.request.PhotoPostFBGraphSearchByDateRequest;
+import model.facebook.graph.response.PhotoPostFBGraphSearchByDateResponse;
 import model.facebook.group.request.*;
 import model.facebook.group.response.*;
 import model.facebook.page.request.*;
@@ -608,5 +610,23 @@ public class FacebookApiTest {
                 .build();
         GroupDetailsByGroupIDResponse response = manager.getFBGroupDetailsByGroupID(request);
 
+    }
+
+
+    // Facebook Graph STARTS
+    @Test
+    void testGetPhotoPostFBGraphByDate() {
+        PhotoPostFBGraphSearchByDateRequest request = new PhotoPostFBGraphSearchByDateRequest.Builder()
+                .withQuery("/4/stories-by")
+                .withType("stories")
+                .withDateFrom("2020-01")
+                .withDateTo("2020-02")
+                .withTimeout(110)
+                .withLimit(3)
+                .withDelayed(0)
+                .withTaskTimeout(3540)
+                .build();
+        PhotoPostFBGraphSearchByDateResponse response = manager.getPhotoPostFBGraphByDate(request);
+        Assertions.assertEquals(3, response.getResult().size());
     }
 }
