@@ -1,6 +1,7 @@
 package maltego.rx;
 
 import model.facebook.graph.response.PhotoPostFBGraphSearchByDateResponse;
+import model.facebook.graph.response.PhotoProfilePostGraphSearchResponse;
 import model.facebook.group.response.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
@@ -303,5 +304,11 @@ public interface MaltegoAPI {
                                                                                @Query("delayed") Integer delayed,
                                                                                @Query("task_id") Integer taskID,
                                                                                @Query("task_timeout") Integer taskTimeout);
+
+    @GET("facebook/graph_query")
+    Observable<PhotoProfilePostGraphSearchResponse> getPhotoProfileFBUsingGraph(@Query("query") String query,
+                                                                                @Query("limit") Integer limit,
+                                                                                @Query("type") String type,
+                                                                                @Query("timeout") Integer timeout);
 //    Facebook Graph ENDS
 }
