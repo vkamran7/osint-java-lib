@@ -1,5 +1,6 @@
 package maltego.rx;
 
+import model.facebook.graph.response.PhotoPostFBGraphSearchByDateResponse;
 import model.facebook.group.response.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
@@ -290,4 +291,17 @@ public interface MaltegoAPI {
     Observable<GroupDetailsByGroupIDResponse> getFacebookGroupDetailsByGroupID(@Query("query") String query,
                                                                                @Query("limit") Integer limit);
 //    Facebook Groups ENDS
+
+//    Facebook Graph STARTS
+    @GET("facebook/graph_query_by_date")
+    Observable<PhotoPostFBGraphSearchByDateResponse> getPhotoPostFBGraphByDate(@Query("query") String query,
+                                                                               @Query("type") String type,
+                                                                               @Query("date_from") String dateFrom,
+                                                                               @Query("date_to") String dateTo,
+                                                                               @Query("timeout") Integer timeout,
+                                                                               @Query("limit") Integer limit,
+                                                                               @Query("delayed") Integer delayed,
+                                                                               @Query("task_id") Integer taskID,
+                                                                               @Query("task_timeout") Integer taskTimeout);
+//    Facebook Graph ENDS
 }
