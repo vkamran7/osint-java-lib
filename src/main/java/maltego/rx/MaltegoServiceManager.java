@@ -2,6 +2,8 @@ package maltego.rx;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.facebook.graph.request.PhotoPostFBGraphSearchByDateRequest;
+import model.facebook.graph.response.PhotoPostFBGraphSearchByDateResponse;
 import model.facebook.group.request.*;
 import model.facebook.group.response.*;
 import model.facebook.page.request.*;
@@ -996,5 +998,32 @@ public final class MaltegoServiceManager {
         return response.get();
     }
 //    Facebook Group ENDS
+
+
+//    Facebook Graph STARTS
+    public Observable<PhotoPostFBGraphSearchByDateResponse> getPhotoPostFBGraphByDateObs(PhotoPostFBGraphSearchByDateRequest request) {
+        return maltegoAPI.getPhotoPostFBGraphByDate(
+                request.getQuery(),
+                request.getType(),
+                request.getDateFrom(),
+                request.getDateTo(),
+                request.getTimeout(),
+                request.getLimit(),
+                request.getDelayed(),
+                request.getTaskID(),
+                request.getTaskTimeout()
+        );
+    }
+
+    public PhotoPostFBGraphSearchByDateResponse getPhotoPostFBGraphByDate(PhotoPostFBGraphSearchByDateRequest request) {
+        AtomicReference<PhotoPostFBGraphSearchByDateResponse> response = new AtomicReference<>();
+        try {
+            getPhotoPostFBGraphByDateObs(request).subscribe(response::set);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return response.get();
+    }
+//    Facebook Graph ENDS
 
 }
