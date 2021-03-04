@@ -2,6 +2,7 @@ package maltego.rx;
 
 import model.facebook.graph.response.PhotoPostFBGraphSearchByDateResponse;
 import model.facebook.graph.response.PhotoProfilePostGraphSearchResponse;
+import model.facebook.graph.response.PlacesGraphSearchResponse;
 import model.facebook.group.response.*;
 import model.facebook.page.response.*;
 import model.facebook.photo.response.*;
@@ -310,5 +311,10 @@ public interface MaltegoAPI {
                                                                                 @Query("limit") Integer limit,
                                                                                 @Query("type") String type,
                                                                                 @Query("timeout") Integer timeout);
+
+    @GET("facebook/query_places_na")
+    Observable<PlacesGraphSearchResponse> getPlaceFromFBUsingGraph(@Query("query") String query,
+                                                                   @Query("limit") Integer limit,
+                                                                   @Query("timeout") Integer timeout);
 //    Facebook Graph ENDS
 }
